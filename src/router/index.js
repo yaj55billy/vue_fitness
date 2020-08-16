@@ -1,15 +1,20 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Shop from '../views/Shop.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/', // 路徑
-    name: 'Home', // 名字
-    component: Home,
+    name: 'Shop', // 名字
+    component: Shop,
     children: [
+      {
+        path: '',
+        name: 'Home',
+        component: () => import('../views/front/Home.vue'),
+      },
       {
         path: 'about',
         name: 'About',

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <loading :active.sync="isLoading"></loading>
     <form class="form-signin" @submit.prevent="signin">
       <h1 class="h3 mb-3 font-weight-normal">
         請先登入
@@ -41,12 +42,15 @@ export default {
         password: '',
       },
       token: '',
+      isLoading: false,
     };
   },
   methods: {
     signin() {
+      this.isLoading = true;
       const api = `${process.env.VUE_APP_APIPATH}/auth/login`;
       this.axios.post(api, this.user).then((res) => {
+        this.isLoading = false;
         const { token } = res.data;
         const { expired } = res.data;
         /*
@@ -54,7 +58,7 @@ export default {
           timestamp unix >> 一般時間格式
         */
         document.cookie = `token=${token}; expires=${new Date(expired * 1000)}; path=/`;
-
+        this.$bus.$emit('notice-user', '登入成功~~');
         // 轉址一定要在 ajax 之後
         this.$router.push('/admin/products');
       }).catch((error) => {

@@ -1,5 +1,302 @@
 <template>
-  <div class="">
-    <h2>這裡是酷碰劵頁面</h2>
+  <div class="mt-4">
+    <loading :active.sync="isLoading"></loading>
+    <h2>優惠券後台</h2>
+    <div class="text-right mt-sm-6 mt-4">
+      <button class="btn btn-primary" @click="openCouponModal('new')">
+        新增優惠券
+      </button>
+    </div>
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th>名稱</th>
+          <th>折扣百分比</th>
+          <th>到期日</th>
+          <th>是否啟用</th>
+          <th>編輯</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in coupons" :key="item.id">
+          <td>{{ item.title }}</td>
+          <td>{{ item.percent }}</td>
+          <td>{{ item.deadline.datetime }}</td>
+          <td>
+            <span v-if="item.enabled" class="text-success">啟用</span>
+            <span v-else>未啟用</span>
+          </td>
+          <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-primary btn-sm"
+              @click="openCouponModal('edit',item)">編輯</button>
+              <button type="button" class="btn btn-outline-danger btn-sm"
+              @click="openCouponModal('delete',item)">刪除</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <pagination :pagedata="pagination" @update="getCoupons"></pagination>
+
+    <div id="couponModal" class="modal fade"
+     tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content border-0">
+          <div class="modal-header bg-dark text-white">
+            <h5 id="exampleModalLabel" class="modal-title">
+              <span>新增產品</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label for="title">優惠券名稱</label>
+                  <input id="couponTitle" v-model="tempCoupons.title"
+                  type="text" class="form-control" placeholder="請輸入名稱">
+                </div>
+                <div class="form-group">
+                  <label for="coupon_code">優惠碼</label>
+                  <input
+                    id="coupon_code"
+                    v-model="tempCoupons.code"
+                    type="text"
+                    class="form-control"
+                    placeholder="請輸入優惠碼"
+                  >
+                </div>
+                <div class="form-group">
+                  <label for="title">折扣百分比</label>
+                  <input id="couponPercent" v-model="tempCoupons.percent"
+                  type="text" class="form-control" placeholder="請輸入折扣百分比">
+                </div>
+                <div class="form-group">
+                  <label for="couponDeadline">到期日</label>
+                  <input
+                    id="couponDeadline"
+                    v-model="coupon_date"
+                    type="date"
+                    class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="couponDeadtime">到期時間</label>
+                  <input
+                    id="couponDeadtime"
+                    v-model="coupon_time"
+                    type="time"
+                    step="1"
+                    class="form-control">
+                </div>
+                <div class="form-group">
+                  <div class="form-check">
+                    <input id="enabled" v-model="tempCoupons.enabled"
+                      class="form-check-input" type="checkbox">
+                    <label class="form-check-label" for="enabled">是否啟用</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+              取消
+            </button>
+            <button type="button" class="btn btn-primary" @click="updateCoupon">
+              確認
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="delCouponModal" class="modal fade"
+      tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content border-0">
+          <div class="modal-header bg-danger text-white">
+            <h5 id="exampleModalLabel" class="modal-title">
+              <span>刪除優惠券</span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            是否刪除
+            <strong class="text-danger">{{ tempCoupons.title }}</strong> 優惠券(刪除後將無法恢復)。
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+              取消
+            </button>
+            <button type="button" class="btn btn-danger" @click="deleteCoupon">
+              確認刪除
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
+
+<script>
+
+/* global $ */
+
+import pagination from '@/components/Pagination.vue';
+
+export default {
+  components: {
+    pagination,
+  },
+  data() {
+    return {
+      coupons: [],
+      pagination: {},
+      tempCoupons: {
+        title: '',
+        code: '',
+        percent: 0,
+        enabled: false,
+        deadline_at: 0,
+      },
+      coupon_date: '', // 暫存優惠券到期日 >> deadline_at
+      coupon_time: '', // 暫存優惠券到期時間 >> deadline_at
+      isLoading: false,
+    };
+  },
+  props: ['token'],
+  created() {
+    this.getCoupons();
+  },
+  methods: {
+    getCoupons(num = 1) {
+      this.isLoading = true;
+      const api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupons?page=${num}`;
+      this.axios.get(api).then((res) => {
+        this.coupons = res.data.data;
+        this.pagination = res.data.meta.pagination; // 分頁的資料傳遞會用到
+        this.isLoading = false;
+      });
+
+      if (this.tempCoupons.id) {
+        this.tempCoupons = {
+          title: '',
+          code: '',
+          percent: 0,
+          enabled: false,
+          deadline_at: 0,
+        };
+        this.coupon_date = '';
+        this.coupon_time = '';
+      } else {
+        // 新增資料、刪除資料的狀況
+        this.tempCoupons = {
+          title: '',
+          code: '',
+          percent: 0,
+          enabled: false,
+          deadline_at: 0,
+        };
+        this.coupon_date = '';
+        this.coupon_time = '';
+      }
+    },
+    openCouponModal(status, item) {
+      if (status === 'new') {
+        this.tempCoupons = {
+          title: '',
+          code: '',
+          percent: 0,
+          enabled: false,
+          deadline_at: 0,
+        };
+        $('#couponModal').modal('show');
+      } else if (status === 'edit') {
+        // 取得 API 資料，這樣才知道""編輯""是哪一筆
+        this.isLoading = true;
+        const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupon/${item.id}`;
+        this.axios.get(url).then((res) => {
+          this.tempCoupons = res.data.data;
+          [this.coupon_date, this.coupon_time] = this.tempCoupons.deadline.datetime.split(' ');
+          $('#couponModal').modal('show');
+          this.isLoading = false;
+        }).catch((error) => {
+          this.isLoading = false;
+          console.log(error);
+        });
+      } else if (status === 'delete') {
+        // 取得 API 資料，這樣才知道""刪除""是哪一筆
+        this.isLoading = true;
+        const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}
+        /admin/ec/coupon/${item.id}`;
+        this.axios.get(url).then((res) => {
+          this.tempCoupons = res.data.data;
+          $('#delCouponModal').modal('show');
+          this.isLoading = false;
+        });
+      }
+    },
+    updateCoupon() {
+      if (this.tempCoupons.id) {
+        // 編輯
+        this.isLoading = true;
+        this.tempCoupons.deadline_at = `${this.coupon_date} ${this.coupon_time}`;
+        const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}
+        /admin/ec/coupon/${this.tempCoupons.id}`;
+        this.axios.patch(url, this.tempCoupons)
+          .then(() => {
+            $('#couponModal').modal('hide');
+            this.$bus.$emit('notice-user', '優惠券編輯成功');
+            this.isLoading = false;
+            this.getCoupons();
+          }).catch((error) => {
+            this.isLoading = false;
+            const errorText = error.response.data.message;
+            $('#couponModal').modal('hide');
+            this.$bus.$emit('notice-user', `優惠券編輯失敗,+${errorText}`);
+          });
+      } else {
+        // 新增 Coupon
+        this.tempCoupons.deadline_at = `${this.coupon_date} ${this.coupon_time}`;
+        this.isLoading = true;
+        const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupon`;
+        this.axios.post(url, this.tempCoupons)
+          .then(() => {
+            $('#couponModal').modal('hide');
+            this.$bus.$emit('notice-user', '優惠券新增成功');
+            this.isLoading = false;
+            this.getCoupons();
+          }).catch(() => {
+            this.isLoading = false;
+            $('#couponModal').modal('hide');
+            this.$bus.$emit('notice-user', '優惠券新增失敗，請再檢查看看');
+          });
+      }
+    },
+    deleteCoupon() {
+      // 刪除
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupon/${this.tempCoupons.id}`;
+      this.axios.delete(url).then(() => {
+        $('#delCouponModal').modal('hide');
+        this.$bus.$emit('notice-user', '優惠券已刪除');
+        this.isLoading = false;
+        this.getCoupons();
+      }).catch(() => {
+        this.isLoading = false;
+        $('#delCouponModal').modal('hide');
+        this.$bus.$emit('notice-user', '優惠券刪除失敗，請再檢查看看');
+      });
+    },
+  },
+};
+</script>

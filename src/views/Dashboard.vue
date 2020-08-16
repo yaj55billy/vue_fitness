@@ -98,6 +98,7 @@ export default {
     },
     signout() {
       document.cookie = 'token=; expires=; path=/';
+      this.$bus.$emit('notice-user', '您已登出~~');
       this.$router.push('/');
     },
   },

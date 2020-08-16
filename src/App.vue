@@ -4,9 +4,26 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
+    <toasts></toasts>
     <router-view/>
   </div>
 </template>
+
+<script>
+
+import toasts from '@/components/Toasts.vue';
+
+export default {
+  components: {
+    toasts,
+  },
+  data() {
+    return {
+
+    };
+  },
+};
+</script>
 
 <style lang="scss">
 @import './assets/main';

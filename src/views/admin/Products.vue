@@ -24,8 +24,8 @@
         <tr v-for="(item) in products" :key="item.id">
           <td data-th="分類">{{ item.category }}</td>
           <td data-th="產品名稱">{{ item.title }}</td>
-          <td data-th="原價">{{ item.origin_price }}</td>
-          <td data-th="售價">{{ item.price }}</td>
+          <td data-th="原價">{{ item.origin_price | toThousands }}</td>
+          <td data-th="售價">{{ item.price | toThousands }}</td>
           <td data-th="是否啟用">
             <span v-if="item.enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>
@@ -43,8 +43,6 @@
     </table>
 
     <pagination :pagedata="pagination" @update="getProducts"></pagination>
-    <!-- <productmodal :tempProduct="tempProduct" @update="getProducts"></productmodal> -->
-    <!-- <delmodal :tempProduct="tempProduct" @update="getProducts"></delmodal> -->
 
     <div id="productModal" class="modal fade"
      tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -82,6 +80,11 @@
                 </div>
                 <div class="form-group">
                   上傳圖片
+                  <div class="spinner-grow text-success" role="status"
+                  style="width: 15px; height: 15px;"
+                  v-if="fileUpLoading">
+                    <span class="sr-only">Loading...</span>
+                  </div>
                   <input type="file" class="form-control" id="customFile" @change="uploadFile">
                 </div>
                 <img class="img-fluid" :src="tempProduct.imageUrl[0]" alt>
@@ -193,14 +196,10 @@
 /* global $ */
 
 import pagination from '@/components/Pagination.vue';
-// import productmodal from '@/components/ProductModal.vue';
-// import delmodal from '@/components/DelModal.vue';
 
 export default {
   components: {
     pagination,
-    // productmodal,
-    // delmodal,
   },
   data() {
     return {
@@ -209,6 +208,7 @@ export default {
       tempProduct: {
         imageUrl: [],
       },
+      fileUpLoading: false,
       isLoading: false,
     };
   },
@@ -272,18 +272,29 @@ export default {
         this.axios.patch(url, this.tempProduct)
           .then(() => {
             $('#productModal').modal('hide');
+            this.$bus.$emit('notice-user', '產品編輯成功');
             this.isLoading = false;
             this.getProducts();
+          }).catch((error) => {
+            this.isLoading = false;
+            const errorText = error.response.data.message;
+            $('#productModal').modal('hide');
+            this.$bus.$emit('notice-user', `產品編輯失敗,+${errorText}`);
           });
       } else {
         // 新增
         this.isLoading = true;
-        const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product`;
+        const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product2`;
         this.axios.post(url, this.tempProduct)
           .then(() => {
             $('#productModal').modal('hide');
+            this.$bus.$emit('notice-user', '產品新增成功');
             this.isLoading = false;
             this.getProducts();
+          }).catch(() => {
+            this.isLoading = false;
+            $('#productModal').modal('hide');
+            this.$bus.$emit('notice-user', '產品新增失敗，請再檢查看看');
           });
       }
     },
@@ -293,11 +304,17 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product/${this.tempProduct.id}`;
       this.axios.delete(url).then(() => {
         $('#delProductModal').modal('hide');
+        this.$bus.$emit('notice-user', '產品已刪除');
         this.isLoading = false;
         this.getProducts();
+      }).catch(() => {
+        this.isLoading = false;
+        $('#delProductModal').modal('hide');
+        this.$bus.$emit('notice-user', '產品刪除失敗，請再檢查看看');
       });
     },
-    uploadFile() {
+    uploadFile() { // 上傳圖片
+      this.fileUpLoading = true;
       const catchFile = document.querySelector('#customFile').files[0];
       const formData = new FormData();
       formData.append('file', catchFile);
@@ -307,14 +324,15 @@ export default {
           'Content-Type': 'multipart/form-data',
         },
       }).then((res) => {
+        this.fileUpLoading = false;
         if (res.status === 200) {
           this.tempProduct.imageUrl.push(res.data.data.path);
         }
         document.querySelector('#customFile').value = '';
       })
-        .catch((error) => {
-          // this.isLoading = false;
-          console.log(error);
+        .catch(() => {
+          this.$bus.$emit('notice-user', '檔案上傳失敗，請再檢查是不是檔案大小超過 2MB');
+          this.fileUpLoading = false;
         });
     },
   },

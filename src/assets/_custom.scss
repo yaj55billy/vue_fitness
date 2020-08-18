@@ -1,0 +1,65 @@
+.sidebar{
+  min-height: 100vh;
+  @media screen and (max-width: 767px){
+    min-height: auto;
+  }
+}
+
+// 前台 table
+.table {
+  th,
+  td {
+    vertical-align: middle;
+    padding: 0.6rem;
+  }
+}
+
+// 後台 table
+.table-admin{
+  text-align: left;
+  th,
+  td {
+    vertical-align: middle;
+    padding: 0.6rem;
+  }
+  tbody{
+    tr{
+      &:nth-child(odd){
+        background-color: lighten($primary,72%);
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .table-rwd{
+    min-width: 100%;
+    thead{
+      display: none;
+    }
+    tr{
+      display: block;
+      border: 1px solid #ddd;
+      margin-top: 12px;
+      &:nth-child(1){
+        margin-top: 0;
+      }
+    }
+    th,td{
+      border-top: none;
+    }
+    td{
+      display: block;
+      width: 100%;
+      font-size: 15px;
+      overflow: hidden;
+      &:before{
+        content: attr(data-th) " : ";
+        display: inline-block;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+    }
+  }
+}

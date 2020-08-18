@@ -1,21 +1,23 @@
 <template>
   <div>
     <loading :active.sync="isLoading"></loading>
-    <h2>圖片頁面</h2>
-    <table class="table mt-4 table-rwd">
+    <h2 class="mt-sm-5 mt-4">圖片列表</h2>
+    <table class="table table-admin mt-4">
       <thead>
         <tr>
-          <th>圖片</th>
-          <th>操作</th>
+          <th width="600" class="text-center">圖片</th>
+          <th width="600" class="text-center">操作</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in storages" :key="item.id">
-          <td>
-            <img :src="item.path" alt="" style="max-width: 200px">
+          <td class="text-center">
+            <img :src="item.path" alt="" style="max-width: 180px">
           </td>
-          <td>
-            <button type="button" @click="openDelModal(item)">刪除</button>
+          <td class="text-center">
+            <button type="button"
+            class="btn btn-outline-danger btn-sm"
+            @click="openDelModal(item)">刪除</button>
           </td>
         </tr>
       </tbody>

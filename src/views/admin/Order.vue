@@ -1,8 +1,8 @@
 <template>
   <div class="mt-4">
     <loading :active.sync="isLoading"></loading>
-    <h2>這裡是訂單頁面</h2>
-    <table class="table mt-4">
+    <h2>訂單列表</h2>
+    <table class="table table-admin table-rwd mt-4">
       <thead>
         <tr>
           <th>下單時間</th>
@@ -14,11 +14,11 @@
       </thead>
       <tbody>
         <tr v-for="item in orders" :key="item.id">
-          <td>{{ item.created.datetime }}</td>
-          <td>{{ item.products[0].product.title }}</td>
-          <td>{{ item.payment }}</td>
-          <td>{{ item.amount | toThousands }}</td>
-          <td>
+          <td data-th="下單時間">{{ item.created.datetime }}</td>
+          <td data-th="購買款項">{{ item.products[0].product.title }}</td>
+          <td data-th="付款方式">{{ item.payment }}</td>
+          <td data-th="應付金額">{{ item.amount | toThousands }}</td>
+          <td data-th="是否付款">
             <input type="checkbox" :id="item.id"
             :checked="item.paid"
             @change="changePaidStatus(item)">
@@ -30,9 +30,10 @@
                 尚未付款
               </span>
             </label>
-            <div class="spinner-grow text-success" role="status"
-                  style="width: 15px; height: 15px;"
-                  v-if="paidLoading">
+            <div class="spinner-border text-primary"
+            role="status"
+            style="width: 12px; height: 12px;"
+            v-if="paidLoading">
               <span class="sr-only">Loading...</span>
             </div>
           </td>
@@ -41,8 +42,14 @@
     </table>
     <pagination :pagedata="pagination" @update="getOrders"></pagination>
   </div>
-
 </template>
+
+<style lang="scss">
+input[type="checkbox"]{
+  margin-right: 3px;
+  vertical-align: middle;
+}
+</style>
 
 <script>
 

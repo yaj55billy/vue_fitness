@@ -2,7 +2,7 @@
   <div>
     <h2>後台管理頁面</h2>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap shadow navbar-expand ">
-      <a href="#" class="navbar-brand col-sm-3 col-md-2 mr-0 active">後台</a>
+      <a href="#" class="navbar-brand col-sm-3 col-md-2 mr-0 active text-left">後台管理頁面</a>
       <div class="ml-auto">
         <ul class="navbar-nav px-3">
           <li class="nav-item text-nowrap">
@@ -15,59 +15,72 @@
       </div>
     </nav>
 
-    <div class="container-fluid mt-3">
+    <div class="container-fluid">
       <div class="row">
         <!-- 側邊 -->
-        <nav class="col-md-2 d-md-block bg-light sidebar">
-          <div class="sidebar-sticky mt-6">
-            <h6 class="sidebar-heading d-flex
-            justify-content-between align-items-center
-            px-3 mt-4 mb-1 text-muted">
-              <span class="h5">儀表板</span>
-            </h6>
-            <ul class="nav flex-column">
-              <li class="nav-item text-left">
+        <nav class="col-lg-2 col-md-3 d-md-block bg-light sidebar">
+          <div class="sidebar-sticky mt-4">
+            <ul class="nav">
+              <!-- flex-column -->
+              <li class="nav-item">
                 <router-link to="/admin/products"
-                class="nav-link font-weight-bold
-                router-link-exact-active active">
+                class="nav-link font-weight-bold router-link-exact-active active">
                   產品列表
                 </router-link>
               </li>
-              <li class="nav-item text-left">
+              <li class="nav-item">
                 <router-link to="/admin/coupons"
                 class="nav-link font-weight-bold">
-                  優惠券
+                  優惠券列表
                 </router-link>
               </li>
-              <li class="nav-item text-left">
+              <li class="nav-item">
                 <router-link to="/admin/order"
                 class="nav-link font-weight-bold">
-                  訂單
+                  訂單列表
                 </router-link>
               </li>
-              <li class="nav-item text-left">
+              <li class="nav-item">
                 <router-link to="/admin/storages"
                 class="nav-link font-weight-bold">
-                  圖片頁面
+                  圖片列表
                 </router-link>
               </li>
             </ul>
           </div>
         </nav>
-        <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
-          <!-- 主要內容 -->
+        <!-- 後台主要內容，帶 :token 到其他頁 props 接收  -->
+
+        <div class="col-lg-10 col-md-9 px-4">
           <router-view :token="token" v-if="checkSuccess"></router-view>
         </div>
       </div>
     </div>
-
-    <!-- <div id="nav">
-      <router-link to="/admin/products">後台產品列表</router-link> |
-      <router-link to="/admin/coupons">後台酷碰劵列表</router-link> |
-      <router-link to="/admin/order">訂單列表</router-link> |
-    </div> -->
   </div>
 </template>
+
+<style lang="scss">
+.nav{
+  .nav-item{
+    width: 100%;
+    text-align: left;
+    @media (max-width: 767px) {
+      width: 25%;
+      text-align: center;
+    }
+    @media (max-width: 575px) {
+      width: 50%;
+    }
+  }
+}
+
+.router-link-active{
+  color: lighten(#274555,25%);
+  &:hover{
+    color: lighten(#274555,25%);
+  }
+}
+</style>
 
 <script>
 export default {
@@ -82,10 +95,9 @@ export default {
   },
   methods: {
     checkLogin() {
+      // 確認是否是有 token (登入)，沒有 token 則回 login 頁面
       this.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');
-      // 將 Token 加入到 Headers 內
       this.axios.defaults.headers.common.Authorization = `Bearer ${this.token}`;
-
       const api = `${process.env.VUE_APP_APIPATH}/auth/check`;
 
       this.axios.post(api, {
@@ -97,6 +109,7 @@ export default {
       });
     },
     signout() {
+      // 登出
       document.cookie = 'token=; expires=; path=/';
       this.$bus.$emit('notice-user', '您已登出~~');
       this.$router.push('/');

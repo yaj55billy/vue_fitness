@@ -17,7 +17,7 @@
           購物車 <i class="fas fa-shopping-cart"></i>
         </router-link>
         <router-link to="/login" class="nav-item nav-link mr-4">登入</router-link>
-        <router-link to="/admin" class="nav-item nav-link">後台</router-link>
+        <router-link to="/admin/products" class="nav-item nav-link">後台</router-link>
 
             <!-- <div id="nav">
       <router-link to="/about">關於我們</router-link> |

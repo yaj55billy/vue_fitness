@@ -1,13 +1,13 @@
 <template>
   <div class="mt-4">
     <loading :active.sync="isLoading"></loading>
-    <h2>優惠券後台</h2>
-    <div class="text-right mt-sm-6 mt-4">
+    <h2>優惠券列表</h2>
+    <div class="text-right mt-sm-2 mt-4">
       <button class="btn btn-primary" @click="openCouponModal('new')">
         新增優惠券
       </button>
     </div>
-    <table class="table mt-4">
+    <table class="table table-admin table-rwd mt-3">
       <thead>
         <tr>
           <th>名稱</th>
@@ -19,14 +19,14 @@
       </thead>
       <tbody>
         <tr v-for="item in coupons" :key="item.id">
-          <td>{{ item.title }}</td>
-          <td>{{ item.percent }}</td>
-          <td>{{ item.deadline.datetime }}</td>
-          <td>
+          <td data-th="名稱">{{ item.title }}</td>
+          <td data-th="折扣百分比">{{ item.percent }}</td>
+          <td data-th="到期日">{{ item.deadline.datetime }}</td>
+          <td data-th="是否啟用">
             <span v-if="item.enabled" class="text-success">啟用</span>
             <span v-else>未啟用</span>
           </td>
-          <td>
+          <td data-th="編輯">
             <div class="btn-group">
               <button type="button" class="btn btn-outline-primary btn-sm"
               @click="openCouponModal('edit',item)">編輯</button>
@@ -47,13 +47,14 @@
         <div class="modal-content border-0">
           <div class="modal-header bg-dark text-white">
             <h5 id="exampleModalLabel" class="modal-title">
-              <span>新增產品</span>
+              <span v-if="tempCoupons.id">編輯 {{ tempCoupons.title }}</span>
+              <span v-else>新增優惠券</span>
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body text-left">
             <div class="row">
               <div class="col-sm-12">
                 <div class="form-group">

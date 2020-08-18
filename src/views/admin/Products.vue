@@ -2,22 +2,21 @@
   <div class="mt-4">
     <!-- vue-loading -->
     <loading :active.sync="isLoading"></loading>
-    <h2>後台產品列表</h2>
-    <div class="text-right mt-sm-6 mt-4">
-      <!-- @click="openModal('new')" -->
+    <h2>產品列表</h2>
+    <div class="text-right mt-sm-2 mt-4">
       <button class="btn btn-primary" @click="openModal('new')">
         建立新的產品
       </button>
     </div>
-    <table class="table mt-4 table-rwd">
-      <thead class="m-hide">
+    <table class="table table-admin table-rwd mt-3">
+      <thead>
         <tr>
-          <th width="120">分類</th>
-          <th>產品名稱</th>
-          <th width="120">原價</th>
-          <th width="120">售價</th>
-          <th width="100">是否啟用</th>
-          <th width="120">編輯</th>
+          <th width="160">分類</th>
+          <th width="780">產品名稱</th>
+          <th width="100">原價</th>
+          <th width="100">售價</th>
+          <th width="160">是否啟用</th>
+          <th width="140">編輯</th>
         </tr>
       </thead>
       <tbody>
@@ -42,8 +41,11 @@
       </tbody>
     </table>
 
+    <!-- 換頁元件 -->
     <pagination :pagedata="pagination" @update="getProducts"></pagination>
+    <!-- 換頁元件 END -->
 
+    <!-- 新增、編輯產品 -->
     <div id="productModal" class="modal fade"
      tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
@@ -51,13 +53,14 @@
         <div class="modal-content border-0">
           <div class="modal-header bg-dark text-white">
             <h5 id="exampleModalLabel" class="modal-title">
-              <span>新增產品</span>
+              <span v-if="tempProduct.id">編輯 {{ tempProduct.title }}</span>
+              <span v-else>新增產品</span>
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body text-left">
             <div class="row">
               <div class="col-sm-4">
                 <div class="form-group">
@@ -80,12 +83,13 @@
                 </div>
                 <div class="form-group">
                   上傳圖片
-                  <div class="spinner-grow text-success" role="status"
-                  style="width: 15px; height: 15px;"
+                  <div class="spinner-border text-primary" role="status"
+                  style="width: 12px; height: 12px;"
                   v-if="fileUpLoading">
                     <span class="sr-only">Loading...</span>
                   </div>
-                  <input type="file" class="form-control" id="customFile" @change="uploadFile">
+                  <input type="file" class="form-control h-auto"
+                  id="customFile" @change="uploadFile">
                 </div>
                 <img class="img-fluid" :src="tempProduct.imageUrl[0]" alt>
                 <img class="img-fluid" :src="tempProduct.imageUrl[1]" alt>
@@ -159,7 +163,9 @@
         </div>
       </div>
     </div>
+    <!-- 新增、編輯產品 END -->
 
+    <!-- 刪除產品 modal  -->
     <div id="delProductModal" class="modal fade"
       tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
@@ -188,6 +194,7 @@
         </div>
       </div>
     </div>
+    <!-- 刪除產品 modal END  -->
   </div>
 </template>
 
@@ -214,6 +221,7 @@ export default {
   },
   props: ['token'],
   created() {
+    // 初始取得產品列表
     this.getProducts();
   },
   methods: {
@@ -226,17 +234,17 @@ export default {
         this.isLoading = false;
       });
 
-      // 最後從 ProductModal.vue emit 過來重新取得資料時，也要把 tempProduct 做初始化
+      // 從新增、編輯、刪除重新取得初始化 tempProduct
       if (this.tempProduct.id) {
         this.tempProduct = {
           imageUrl: [],
         };
       } else {
-        // 新增資料、刪除資料的狀況
         this.tempProduct = {
           imageUrl: [],
         };
       }
+      // 從新增、編輯、刪除重新取得初始化 tempProduct END
     },
     openModal(status, item) {
       if (status === 'new') {
@@ -284,7 +292,7 @@ export default {
       } else {
         // 新增
         this.isLoading = true;
-        const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product2`;
+        const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product`;
         this.axios.post(url, this.tempProduct)
           .then(() => {
             $('#productModal').modal('hide');

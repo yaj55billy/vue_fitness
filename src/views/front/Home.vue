@@ -1,10 +1,13 @@
 <template>
   <div class="home">
+    <navbar></navbar>
     <div class="position-relative">
-      <div class="position-absolute" style="top:0; bottom:0; left:0; right:0; background-image: url(https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
-      background-position: center center; opacity: 0.6;"></div>
+      <div class="position-absolute" style="top:0; bottom:0; left:0; right:0; background-image: url(https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
+      background-position: center center;
+      background-size: cover;
+      opacity: 0.6;"></div>
       <div class="container d-flex flex-column" style="min-height: 100vh;">
-        <navbar></navbar>
+
         <div class="row justify-content-center my-auto">
           <div class="col-md-4 text-center">
             <h2>Lorem ipsum.</h2>

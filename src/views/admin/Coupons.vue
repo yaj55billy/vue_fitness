@@ -230,9 +230,8 @@ export default {
           [this.coupon_date, this.coupon_time] = this.tempCoupons.deadline.datetime.split(' ');
           $('#couponModal').modal('show');
           this.isLoading = false;
-        }).catch((error) => {
+        }).catch(() => {
           this.isLoading = false;
-          console.log(error);
         });
       } else if (status === 'delete') {
         // 取得 API 資料，這樣才知道""刪除""是哪一筆

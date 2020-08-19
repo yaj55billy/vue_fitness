@@ -48,8 +48,7 @@ export default {
   props: ['pagedata'],
   methods: {
     nowPage(num) {
-      // step4 把目前頁碼 $emit 到外層 getProduct
-      // console.log(num);
+      // 把目前頁碼 $emit 到外層 getProduct
       this.$emit('update', num);
     },
   },

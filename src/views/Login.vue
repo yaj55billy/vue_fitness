@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login-page">
     <loading :active.sync="isLoading"></loading>
     <form class="form-signin" @submit.prevent="signin">
       <h1 class="h3 mb-3 font-weight-normal">
@@ -33,6 +33,23 @@
   </div>
 </template>
 
+<style lang="scss">
+  .login-page{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+  }
+  .form-signin{
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+</style>
+
 <script>
 export default {
   data() {
@@ -61,8 +78,8 @@ export default {
         this.$bus.$emit('notice-user', '登入成功~~');
         // 轉址一定要在 ajax 之後
         this.$router.push('/admin/products');
-      }).catch((error) => {
-        console.log(error);
+      }).catch(() => {
+
       });
     },
   },

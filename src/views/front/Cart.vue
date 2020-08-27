@@ -4,7 +4,7 @@
     <div class="container">
       <navbar></navbar>
       <div class="mt-3">
-        <h3 class="mt-3 mb-4">購物車列表</h3>
+        <h3 class="mt-3 mb-4">購物車</h3>
         <div class="row">
           <div class="col-md-8">
             <table class="table">
@@ -59,7 +59,7 @@
               <input type="text"
               class="form-control rounded-0 border-bottom
               border-top-0 border-left-0 border-right-0 shadow-none"
-              placeholder="Coupon Code"
+              placeholder="折價券"
               aria-label="Recipient's username"
               aria-describedby="button-addon2">
               <div class="input-group-append">
@@ -75,7 +75,7 @@
               <table class="table text-muted border-bottom">
                 <tbody>
                   <tr>
-                    <th scope="row" class="border-0 px-0 pt-4 font-weight-normal">Subtotal</th>
+                    <th scope="row" class="border-0 px-0 pt-4 font-weight-normal">小計</th>
                     <td class="text-right border-0 px-0 pt-4">NT$24,000</td>
                   </tr>
                   <!-- <tr>
@@ -85,15 +85,17 @@
                 </tbody>
               </table>
               <div class="d-flex justify-content-between mt-4">
-                <p class="mb-0 h4 font-weight-bold">Total</p>
+                <p class="mb-0 h4 font-weight-bold">總計</p>
                 <p class="mb-0 h4 font-weight-bold">NT$24,000</p>
               </div>
-              <a href="./checkout.html" class="btn btn-dark btn-block mt-4">Lorem ipsum</a>
+              <router-link to="/checkout" class="btn btn-primary btn-block mt-4">
+                到收件人
+              </router-link>
             </div>
           </div>
         </div>
         <div class="my-5">
-          <h3 class="font-weight-bold">Lorem ipsum dolor sit amet</h3>
+          <h3 class="font-weight-bold">可能有興趣的產品</h3>
           <div class="swiper-container mt-4 mb-5">
             <div class="swiper-wrapper">
               <div class="swiper-slide">

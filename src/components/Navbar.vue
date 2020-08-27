@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <router-link to="/products" class="nav-item nav-link mr-4">
-          產品列表
+          課程列表
         </router-link>
         <router-link to="/cart" class="nav-item nav-link mr-4">
           購物車 <i class="fas fa-shopping-cart"></i>

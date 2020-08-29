@@ -1,8 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <router-link to="/" class="navbar-brand">
-      Navbar
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top shadow">
+    <router-link to="/" class="navbar-brand logo">
+      FitSpace
     </router-link>
+    <!-- navbar   bg-dark flex-md-nowrap  navbar-expand  -->
+
     <button class="navbar-toggler" type="button"
     data-toggle="collapse" data-target="#navbarNavAltMarkup"
     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +16,7 @@
           課程列表
         </router-link>
         <router-link to="/cart" class="nav-item nav-link mr-4">
-          購物車 <i class="fas fa-shopping-cart"></i>
+          購物車
         </router-link>
         <router-link to="/login" class="nav-item nav-link mr-4">登入</router-link>
         <router-link to="/admin/products" class="nav-item nav-link">後台</router-link>

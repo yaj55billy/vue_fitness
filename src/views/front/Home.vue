@@ -1,24 +1,28 @@
 <template>
   <div class="home">
     <navbar></navbar>
-    <div class="position-relative">
-      <div class="position-absolute" style="top:0; bottom:0; left:0; right:0; background-image: url(https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
-      background-position: center center;
-      background-size: cover;
-      opacity: 0.6;"></div>
-      <div class="container d-flex flex-column" style="min-height: 100vh;">
 
+    <!-- banner START -->
+    <div class="position-relative banner">
+      <div class="position-absolute banner-bg"></div>
+      <div class="container d-flex flex-column banner-body">
         <div class="row justify-content-center my-auto">
-          <div class="col-md-4 text-center">
-            <h2>Lorem ipsum.</h2>
-            <p class="text-muted mb-0">Lorem ipsum dolor sit amet,
-              consetetur sadipscing elitr, sed diam nonumy eirmod.</p>
-            <button class="btn btn-dark rounded-0 mt-6">Lorem ipsum.</button>
+          <div class="col-md-6 banner-textarea">
+            <!-- <h2 class="banner-textarea__title">Lorem ipsum.</h2> -->
+            <p class="mb-0 banner-textarea__text">
+              想讓身體更健康、更強壯嗎? <br>
+              <span class="shopname">FitSpace</span>能夠提供給您正確的飲食知識、運動方法
+            </p>
+            <!-- 這邊需要一個動態 -->
+            <button class="btn btn-dark mt-4">我要手刀上課</button>
           </div>
         </div>
       </div>
     </div>
+    <!-- banner END -->
+
     <div class="container">
+      <!-- 我們能提供的三大保證 -->
       <div class="row mt-5">
         <div class="col-md-4 mt-md-4">
           <div class="card border-0 mb-4">
@@ -76,7 +80,9 @@
         </div>
       </div>
     </div>
-    <div class="bg-light mt-7">
+
+    <div class="bg-primary mt-7">
+      <h2>學員見證</h2>
       <div class="container">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
@@ -129,7 +135,9 @@
         </div>
       </div>
     </div>
+
     <div class="container my-7">
+      <h2>關於我們</h2>
       <div class="row">
         <div class="col-md-6">
           <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" class="img-fluid">
@@ -152,44 +160,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-light py-4">
-      <div class="container">
-        <div class="d-flex flex-column flex-md-row
-        justify-content-between align-items-md-center
-        align-items-start">
-          <p class="mb-0 font-weight-bold">Lorem ipsum dolor sit amet.</p>
-          <div class="input-group w-md-50 mt-md-0 mt-3">
-            <input type="text" class="form-control rounded-0" placeholder="" />
-            <div class="input-group-append">
-              <button class="btn btn-dark rounded-0" type="button" id="search">
-                Lorem ipsum
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="bg-dark py-5">
-      <div class="container">
-        <div class="d-flex align-items-center justify-content-between text-white mb-md-7 mb-4">
-          <a class="text-white h4" href="./index.html">LOGO</a>
-          <ul class="d-flex list-unstyled mb-0 h4">
-            <li><a href="#" class="text-white mx-3"><i class="fab fa-facebook"></i></a></li>
-            <li><a href="#" class="text-white mx-3"><i class="fab fa-instagram"></i></a></li>
-            <li><a href="#" class="text-white ml-3"><i class="fab fa-line"></i></a></li>
-          </ul>
-        </div>
-        <div class="d-flex flex-column flex-md-row
-        justify-content-between align-items-md-end
-        align-items-start text-white">
-          <div class="mb-md-0 mb-1">
-            <p class="mb-0">02-3456-7890</p>
-            <p class="mb-0">service@mail.com</p>
-          </div>
-          <p class="mb-0">© 2020 LOGO All Rights Reserved.</p>
-        </div>
-      </div>
-    </div>
+    <pagebottom></pagebottom>
   </div>
 </template>
 
@@ -197,11 +168,13 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue';
 import navbar from '@/components/Navbar.vue';
+import pagebottom from '@/components/Footer.vue';
 
 export default {
   name: 'Home',
   components: {
     navbar,
+    pagebottom,
     // HelloWorld,
   },
 };

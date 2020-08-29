@@ -1,0 +1,28 @@
+.banner{
+  position: relative;
+  &-bg{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/alqrF9oIpSorn9gAJUEaTjrbLqpGThxMX4UxrrOhzBAsCfZpCjGIb0fFcKIOfl6wTZIBlcyTcg7iSnFrW0nXayhHnPsaP2BqVgs7n3yRbJzmsyuOOxJsJRAQj6vf3dxz.jpg);
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.6;
+  }
+
+  &-body{
+    min-height: 100vh;
+  }
+
+  &-textarea{
+    background-color: rgba(0,0,0,0.4);
+    padding: 40px;
+    &__title{
+      color: #fff;
+    }
+    &__text{
+      color: #fff;
+    }
+  }
+}

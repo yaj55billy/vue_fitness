@@ -5,13 +5,13 @@
       <navbar></navbar>
     </div>
     <div class="position-relative d-flex align-items-center
-    justify-content-center" style="min-height: 400px;">
-      <div class="position-absolute" style="top:0; bottom: 0; left: 0; right: 0; background-image: url(https://images.unsplash.com/photo-1480399129128-2066acb5009e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80); background-position: center center; opacity: 0.1;"></div>
+    justify-content-center" style="min-height: 550px;">
+      <div class="position-absolute" style="top:0; bottom: 0; left: 0; right: 0; background-image: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/vnty7mxNMzR8GVgqSrbDlLJxyrkGRZsrz8t03ckt0VTMfj6Nr4P83LpSeCddwJmrmoGGrWi1nk70EUsGSlAYPICGHK7dIyGMFWLmCHt5nS9nt8wGrdvUSY6WOXVNSfJz.jpg); background-position: center center; opacity: 0.6;"></div>
       <h2 class="font-weight-bold">課程列表</h2>
     </div>
     <div class="container mt-md-5 mt-3 mb-7">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
           <div class="accordion border border-bottom
           border-top-0 border-left-0 border-right-0 mb-3" id="accordionExample">
             <div class="card border-0">
@@ -29,10 +29,15 @@
               aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body py-0">
                   <ul class="list-unstyled">
-                    <li><a href="#" class="py-2 d-block text-muted">全部商品</a></li>
+                    <li>
+                      <a href="#" class="py-2 d-block text-muted"
+                      @click.prevent="productHandler('全部課程')">
+                        全部課程
+                      </a>
+                    </li>
                     <li v-for="item in filterNotRepeat" :key="item">
                       <a href="#" class="py-2 d-block text-muted"
-                      @click.prevent="test(item)">{{ item }}</a>
+                      @click.prevent="productHandler(item)">{{ item }}</a>
                     </li>
                   </ul>
                 </div>
@@ -40,24 +45,32 @@
             </div>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-12">
           <div class="row">
-            <div class="col-md-6" v-for="item in products" :key="item.id">
-              <div class="card border-0 mb-4 position-relative position-relative">
-                <img :src="item.imageUrl[0]" class="card-img-top rounded-0" alt="...">
-                <a href="#" class="text-dark">
-                  <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
-                </a>
-                <div class="card-body p-0">
-                  <h4 class="mb-0 mt-3">
-                    <router-link :to="`/product/${item.id}`">{{ item.title }}</router-link>
-                  </h4>
-                  <p class="card-text mb-0">NT${{ item.price }}
-                    <span class="text-muted "><del>NT${{ item.origin_price }}</del></span></p>
-                  <p class="text-muted mt-3"></p>
-                  <button type="button" class="btn btn-primary"
-                  @click="addToCart(item.id)">加到購物車</button>
+            <div class="col-lg-4 col-md-6" v-for="item in nowProducts" :key="item.id">
+              <div class="card mb-4 prod">
+                <div class="prod-pic">
+                  <img :src="item.imageUrl[0]" class="card-img-top" :alt="item.title">
+                  <!-- <span class="prod-cart">
+                    <i class="fas fa-cart-plus"></i>
+                  </span> -->
+                  <a href="" class="prod-cart" @click.prevent="addToCart(item.id)">
+                    <i class="fas fa-cart-plus"></i>
+                  </a>
                 </div>
+                <div class="card-body prod-body">
+                  <h4 class="mb-0">{{ item.title }}</h4>
+                  <p class="text-muted mt-3 prod-content">{{ item.content }}</p>
+                  <div class="prod-price">
+                    <div class="float-left">
+                      <del>NT${{ item.origin_price | toThousands }}</del>
+                    </div>
+                    <div class="float-right prod-price__special">
+                      NT${{ item.price | toThousands }}
+                    </div>
+                  </div>
+                </div>
+                <router-link :to="`/product/${item.id}`" class="prod-link"></router-link>
               </div>
             </div>
           </div>
@@ -87,6 +100,7 @@ export default {
   data() {
     return {
       products: [],
+      nowProducts: [],
       pagination: {},
       isLoading: false,
     };
@@ -109,6 +123,7 @@ export default {
       this.axios.get(url).then((res) => {
         this.products = res.data.data;
         this.pagination = res.data.meta.pagination; // 分頁的資料傳遞會用到
+        this.nowProducts = res.data.data;
         this.isLoading = false;
       });
     },
@@ -119,29 +134,23 @@ export default {
         quantity,
       };
       this.axios.post(url, cart).then(() => {
-        // this.isLoading = false;
-        // $('#productModal').modal('hide');
-        // this.getCart();
-        // console.log($('p'));
         this.$bus.$emit('notice-user', '商品已成功加入購物車');
       }).catch((error) => {
         this.$bus.$emit('notice-user', error.response.data.errors[0]);
       });
     },
-    test(val) {
-      console.log(val);
-      // this.products.filter((item) => {
-      //   console.log(item);
-      // });
-      this.products.filter((item) => {
-        if (item.category === val) {
-          // console.log(array);
-          // this.products = [];
-          // this.products.push(item);
-          // this.products = item;s
-        }
-        return item;
-      });
+    productHandler(catchVal) {
+      this.nowProducts = [];
+      if (catchVal === '全部課程') {
+        this.nowProducts = this.products;
+      } else {
+        this.products.map((item) => {
+          if (item.category === catchVal) {
+            this.nowProducts.push(item);
+          }
+          return this.nowProducts;
+        });
+      }
     },
   },
 };

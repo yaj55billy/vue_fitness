@@ -140,7 +140,7 @@
       <h2>關於我們</h2>
       <div class="row">
         <div class="col-md-6">
-          <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" class="img-fluid">
+          <img src="https://images.pexels.com/photos/2294363/pexels-photo-2294363.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="" class="img-fluid">
         </div>
         <div class="col-md-4 m-auto text-center">
           <h4 class="mt-4">Lorem ipsum</h4>

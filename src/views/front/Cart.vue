@@ -34,14 +34,11 @@
           </ul>
           <!-- 流程部分 END -->
 
-          <div class="section-title" style="text-align: left;
-    border-bottom: solid 1px;
-    border-top: solid 1px;
-    padding: 11px 0;">
-            <h2 style="    ">購物車</h2>
-          <router-link to="/products" class="btn btn-primary btn-block mt-4 rounded-pill">
-                    繼續購物
-                  </router-link>
+          <div class="cart-title">
+            <h2 style="">購物車</h2>
+            <router-link to="/products" class="btn btn-outline-primary btn-md rounded-pill">
+              繼續購物
+            </router-link>
           </div>
 
           <!-- 購物車內容 -->
@@ -86,13 +83,13 @@
           </ul>
           <!-- 購物車內容 END -->
 
-          <div class="row">
-            <div class="col-md-8">
-              <div class="input-group w-50">
+          <div class="row cart-footer">
+            <div class="col-md-8 cart-footer__coupon">
+              <div class="input-group">
                 <input type="text"
-                class="form-control rounded-0 border-bottom
-                border-top-0 border-left-0 border-right-0 shadow-none"
-                placeholder="折價券">
+                      class="form-control rounded-0 border-bottom
+                border-top-0 border-left-0 border-right-0 shadow-none" placeholder="折價券">
+
                 <div class="input-group-append">
                   <button class="btn btn-outline-dark border-bottom
                   border-top-0 border-left-0 border-right-0 rounded-0"
@@ -100,23 +97,21 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="mb-4">
-                <div class="d-flex justify-content-between mt-4">
-                  <p class="mb-0 font-weight-bold">小計</p>
-                  <p class="mb-0 font-weight-bold">{{ cartTotal | toThousands }}</p>
-                </div>
-                <div class="d-flex justify-content-between mt-4">
-                  <p class="mb-0 h4 font-weight-bold">總計</p>
-                  <p class="mb-0 h4 font-weight-bold">{{ cartTotal | toThousands }}</p>
-                </div>
+            <div class="col-md-4 cart-footer__total">
+              <div class="cart-footer__total--item">
+                <p class="mb-0">小計</p>
+                <p class="mb-0">$ {{ cartTotal | toThousands }}</p>
+              </div>
+              <div class="cart-footer__total--item mt-2">
+                <p class="mb-0 h4 font-weight-bold">總計</p>
+                <p class="mb-0 h4 font-weight-bold">$ {{ cartTotal | toThousands }}</p>
               </div>
             </div>
-            <router-link to="/products" class="btn btn-primary btn-block mt-4 rounded-pill">
-              繼續購物
-            </router-link>
-            <router-link to="/checkout" class="btn btn-primary btn-block mt-4 rounded-pill">
-              到收件人
+          </div>
+
+          <div class="btn-area right mt-4">
+            <router-link to="/checkout" class="btn btn-primary rounded-pill btn-xl">
+              前往結帳
             </router-link>
           </div>
         </div>

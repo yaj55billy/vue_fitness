@@ -1,0 +1,58 @@
+/* ------------------- 共用 -------------------- */
+
+.logo{
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.shopname{
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.2rem;
+  margin-right: 4px;
+}
+
+
+
+.section{
+  padding: 120px 0 60px;
+}
+
+// 按鈕部分
+
+.btn{
+  &-xl{
+    padding: 15px 65px;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  &-md{
+    padding: 8px 40px;
+    font-size: 16px;
+    @media (max-width: 480px){
+      padding: 6px 30px;
+    }
+  }
+
+  &-sm{
+    padding: 4px 12px;
+    // padding: 6px 40px;
+  }
+
+  &-area{
+    width: 100%;
+    &.right{
+      text-align: right;
+    }
+    &.left{
+      text-align: left;
+    }
+    &.center{
+      text-align: center;
+    }
+  }
+}
+
+// 按鈕部分 END

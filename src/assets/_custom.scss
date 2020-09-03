@@ -128,6 +128,7 @@
       width: 10%;
       i.fa-trash-alt{
         font-size: 18px;
+        cursor: pointer;
         @media (max-width: 575px){
           font-size: 16px;
         }
@@ -140,7 +141,6 @@
   }
 
   &-footer{
-
     &__coupon{
       .input-group{
         width: 50%;
@@ -162,6 +162,15 @@
       }
     }
   }
+
+  &-empty{
+    border: solid 1px;
+    padding: 120px 40px;
+    margin-top: 20px;
+    @media screen and (max-width: 767px) {
+      padding: 80px 15px;
+    }
+  }
 }
 // 購物車資訊 END ----
 
@@ -176,3 +185,13 @@
     margin-bottom: 0;
   }
 }
+
+.cart-complete{
+  margin-top: 20px;
+  padding: 150px 40px;
+  border: solid 2px;
+}
+
+// .form{
+//   padding: 0 12px;
+// }

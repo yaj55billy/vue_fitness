@@ -6,15 +6,14 @@
       <div class="cart-page">
         <div class="container">
           <div class="cart-title">
-            <h2 style="">資料填寫</h2>
-            <router-link to="/cart" class="btn btn-outline-primary btn-md rounded-pill">
-              回購物車
-            </router-link>
+            <h2 style="">付款頁</h2>
           </div>
 
-          <!-- 購物車內容 -->
+          <!-- 訂單內容 -->
           <ul class="cart-info">
-            <li class="cart-info__list" v-for="item in carts" :key="item.product.id + 1">
+            <li class="cart-info__list"
+            v-for="item in order.products"
+            :key="item.product.description">
               <div class="cart-info__pic">
                 <img :src="item.product.imageUrl[0]" alt="">
               </div>
@@ -22,102 +21,40 @@
                 <h4 class="cart-info__title">{{ item.product.title }}</h4>
               </div>
               <div class="cart-info__num">
-                x <span class="font-weight-bold">{{ item.quantity }}</span>
+                <span class="font-weight-bold">{{ item.quantity }}</span> 堂
               </div>
               <div class="cart-info__price text-right">
                 ${{ item.product.price | toThousands }}
                 <br>
-                <!-- {{ item.product.price | toThousands }} -->
               </div>
             </li>
           </ul>
-          <!-- 購物車內容 END -->
+          <!-- 訂單內容 END -->
 
           <div class="row justify-content-end">
             <div class="col-md-4 cart-footer__total ">
-              <div class="cart-footer__total--item">
-                <p class="mb-0">小計</p>
-                <p class="mb-0">$ {{ cartTotal | toThousands }}</p>
-              </div>
               <div class="cart-footer__total--item mt-2">
                 <p class="mb-0 h4 font-weight-bold">總計</p>
-                <p class="mb-0 h4 font-weight-bold">$ {{ cartTotal | toThousands }}</p>
+                <p class="mb-0 h4 font-weight-bold">$ {{ order.amount | toThousands }}</p>
               </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-md-12">
-              <validation-observer v-slot="{ invalid }">
-                <form class="form mt-4" @submit.prevent="clickMe()">
-                  <!-- 收件人姓名 -->
-                  <div class="form-group">
-                    <validation-provider rules="required" v-slot="{ errors, classes }">
-                      <label for="username" class="text-left w-100">收件人姓名</label>
-                      <input id="username" type="text" name="收件人姓名"
-                      v-model="username" class="form-control" :class="classes">
-                      <span class="invalid-feedback">{{ errors[0] }}</span>
-                    </validation-provider>
-                  </div>
-
-                  <!-- Email  -->
-                  <div class="form-group">
-                    <validation-provider rules="required|email" v-slot="{ errors, classes }">
-                      <label for="email" class="text-left w-100">Email</label>
-                      <input id="email" type="email" name="信箱" v-model="email"
-                      class="form-control" :class="classes">
-                      <span class="invalid-feedback">{{ errors[0] }}</span>
-                    </validation-provider>
-                  </div>
-
-                  <!-- 電話 -->
-                  <div class="form-group">
-                    <validation-provider rules="required|min:8" v-slot="{ errors, classes }">
-                      <label for="tel" class="text-left w-100">電話</label>
-                      <input id="tel" type="tel" name="電話" v-model="tel"
-                      class="form-control" :class="classes">
-                      <span class="invalid-feedback">{{ errors[0] }}</span>
-                    </validation-provider>
-                  </div>
-
-                  <!-- 地址 -->
-                  <div class="form-group">
-                    <validation-provider rules="required" v-slot="{ errors, classes }">
-                      <label for="addr" class="text-left w-100">地址</label>
-                      <input id="addr" type="text" name="地址" v-model="addr"
-                      class="form-control" :class="classes">
-                      <span class="invalid-feedback">{{ errors[0] }}</span>
-                    </validation-provider>
-                  </div>
-
-                  <!-- 購買方式 -->
-                  <div class="form-group">
-                    <label for="pay-method" class="text-left w-100">購買方式</label>
-                    <select name="付款方式" id="pay-method" class="form-control"
-                    required="required" v-model="payMethod">
-                      <option value="" disabled="disabled" selected>請選擇付款方式</option>
-                      <option value="WebATM">WebATM</option>
-                      <option value="ATM">ATM</option>
-                      <option value="Barcode">Barcode</option>
-                      <option value="Credit">Credit</option>
-                      <option value="ApplePay">ApplePay</option>
-                      <option value="GooglePay">GooglePay</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="message" class="text-left w-100">留言</label>
-                    <textarea name="message" id="" cols="30" rows="3"
-                    class="form-control" v-model="message"></textarea>
-                  </div>
-                  <div class="btn-area right">
-                    <button type="submit"
-                    class="btn btn-primary rounded-pill btn-xl" :disabled="invalid">確認結帳</button>
-                  </div>
-                </form>
-              </validation-observer>
-            </div>
+          <!-- 購買者內容 -->
+          <div class="">
+            <h3>訂購人資料</h3>
+            姓名: {{ order.user.name }} <br>
+            Email:{{ order.user.email }} <br>
+            電話: {{ order.user.tel }} <br>
+            地址: {{ order.user.address }} <br>
+            付款方式: {{ order.payment }}
           </div>
+          <button class="btn btn-primary rounded-pill btn-xl" @click="payOrder()">
+            付款
+          </button>
+          <!-- <router-link to="/compelete" class="btn btn-primary rounded-pill btn-xl">
+            付款
+          </router-link> -->
         </div>
       </div>
     </section>
@@ -137,37 +74,45 @@ export default {
   },
   data() {
     return {
-      carts: [],
-      cartTotal: 0,
+      orderId: '',
+      order: [],
       isLoading: false,
-      username: '',
-      email: '',
-      tel: '',
-      addr: '',
-      payMethod: '',
-      message: '',
     };
   },
   created() {
-    this.getCart();
+    this.orderId = this.$route.params.orderId; // 取上方網址參數 (id)
+    if (this.orderId) {
+      this.getDetailed(this.orderId);
+    }
+
+    // this.getOrders();
   },
   methods: {
-    getCart() { // 取得購物車資訊
+    getDetailed(id) {
       this.isLoading = true;
-      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`;
-      this.axios.get(url)
-        .then((res) => {
-          this.carts = res.data.data;
-          this.updateTotal();
-          this.isLoading = false;
-        });
-    },
-    updateTotal() { // 計算總價
-      this.cartTotal = 0; // 歸零，不然計算會有累加狀況。
-      this.carts.forEach((item) => {
-        this.cartTotal += item.product.price * item.quantity;
+      this.orderId = id;
+
+      // const url = `${process.env.VUE_APP_APIPATH}/api/${this.uuid}/ec/orders/${id}`;
+
+      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders/${id}`;
+
+      this.axios.get(url).then((res) => {
+        this.order = res.data.data;
+        this.isLoading = false;
       });
     },
+    payOrder() {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders/${this.orderId}/paying`;
+
+      this.axios.post(url).then((res) => {
+        if (res.data.data.paid) {
+          this.$router.push(`/complete/${this.orderId}`);
+        }
+        this.isLoading = false;
+      });
+    },
+
   },
 };
 </script>

@@ -21,62 +21,27 @@
     </div>
     <!-- banner END -->
 
-    <div class="container">
-      <!-- 我們能提供的三大保證 -->
-      <div class="row mt-5">
-        <div class="col-md-4 mt-md-4">
-          <div class="card border-0 mb-4">
-            <img
-              src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-              class="card-img-top rounded-0"
-              alt="..."
-            />
-            <div class="card-body text-center">
-              <h4>Lorem ipsum</h4>
-              <div class="d-flex justify-content-between">
-                <p class="card-text text-muted mb-0">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod.
-                </p>
-              </div>
-            </div>
-          </div>
+        <div class="container my-7">
+      <h2>關於我們</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <img src="https://images.pexels.com/photos/2294363/pexels-photo-2294363.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="" class="img-fluid">
         </div>
-        <div class="col-md-4 mt-md-4">
-          <div class="card border-0 mb-4">
-            <img
-              src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-              class="card-img-top rounded-0"
-              alt="..."
-            />
-            <div class="card-body text-center">
-              <h4>Lorem ipsum</h4>
-              <div class="d-flex justify-content-between">
-                <p class="card-text text-muted mb-0">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod.
-                </p>
-              </div>
-            </div>
-          </div>
+        <div class="col-md-4 m-auto text-center">
+          <h4 class="mt-4">Lorem ipsum</h4>
+          <p class="text-muted">Lorem ipsum dolor sit amet,
+            consetetur sadipscing elitr,
+            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
         </div>
-        <div class="col-md-4 mt-md-4">
-          <div class="card border-0 mb-4">
-            <img
-              src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-              class="card-img-top rounded-0"
-              alt="..."
-            />
-            <div class="card-body text-center">
-              <h4>Lorem ipsum</h4>
-              <div class="d-flex justify-content-between">
-                <p class="card-text text-muted mb-0">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod.
-                </p>
-              </div>
-            </div>
-          </div>
+      </div>
+      <div class="row flex-row-reverse justify-content-between mt-4">
+        <div class="col-md-6">
+          <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" class="img-fluid">
+        </div>
+        <div class="col-md-4 m-auto text-center">
+          <h4 class="mt-4">Lorem ipsum</h4>
+          <p class="text-muted">Lorem ipsum dolor sit amet, consetetur
+            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
         </div>
       </div>
     </div>
@@ -136,30 +101,66 @@
       </div>
     </div>
 
-    <div class="container my-7">
-      <h2>關於我們</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <img src="https://images.pexels.com/photos/2294363/pexels-photo-2294363.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="" class="img-fluid">
+        <div class="container">
+      <!-- 我們能提供的三大保證 -->
+      <div class="row mt-5">
+        <div class="col-md-4 mt-md-4">
+          <div class="card border-0 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
+              class="card-img-top rounded-0"
+              alt="..."
+            />
+            <div class="card-body text-center">
+              <h4>Lorem ipsum</h4>
+              <div class="d-flex justify-content-between">
+                <p class="card-text text-muted mb-0">
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                  diam nonumy eirmod.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-4 m-auto text-center">
-          <h4 class="mt-4">Lorem ipsum</h4>
-          <p class="text-muted">Lorem ipsum dolor sit amet,
-            consetetur sadipscing elitr,
-            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
+        <div class="col-md-4 mt-md-4">
+          <div class="card border-0 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
+              class="card-img-top rounded-0"
+              alt="..."
+            />
+            <div class="card-body text-center">
+              <h4>Lorem ipsum</h4>
+              <div class="d-flex justify-content-between">
+                <p class="card-text text-muted mb-0">
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                  diam nonumy eirmod.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="row flex-row-reverse justify-content-between mt-4">
-        <div class="col-md-6">
-          <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" alt="" class="img-fluid">
-        </div>
-        <div class="col-md-4 m-auto text-center">
-          <h4 class="mt-4">Lorem ipsum</h4>
-          <p class="text-muted">Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna.</p>
+        <div class="col-md-4 mt-md-4">
+          <div class="card border-0 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
+              class="card-img-top rounded-0"
+              alt="..."
+            />
+            <div class="card-body text-center">
+              <h4>Lorem ipsum</h4>
+              <div class="d-flex justify-content-between">
+                <p class="card-text text-muted mb-0">
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
+                  diam nonumy eirmod.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
     <pagebottom></pagebottom>
   </div>
 </template>

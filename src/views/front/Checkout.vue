@@ -5,6 +5,24 @@
     <section class="section">
       <div class="cart-page">
         <div class="container">
+
+          <!-- 流程部分 -->
+          <ul class="shop-step">
+            <li class="shop-step__list complete">
+              <div class="shop-step__num">1</div>
+              <div>訂單</div>
+            </li>
+            <li class="shop-step__list complete">
+              <div class="shop-step__num">2</div>
+              <div>付款</div>
+            </li>
+            <li class="shop-step__list">
+              <div class="shop-step__num">3</div>
+              <div>完成</div>
+            </li>
+          </ul>
+          <!-- 流程部分 END -->
+
           <div class="cart-title">
             <h2 style="">付款頁</h2>
           </div>
@@ -41,20 +59,34 @@
           </div>
 
           <!-- 購買者內容 -->
-          <div class="">
-            <h3>訂購人資料</h3>
-            姓名: {{ order.user.name }} <br>
-            Email:{{ order.user.email }} <br>
-            電話: {{ order.user.tel }} <br>
-            地址: {{ order.user.address }} <br>
-            付款方式: {{ order.payment }}
+          <div class="cart-order">
+            <h3 class="text-left">訂購人資料</h3>
+            <ul class="cart-order__list">
+              <li class="cart-order__item">
+                <label class="cart-order__label">姓名:</label>
+                <p class="cart-order__text">{{ order.user.name }}</p>
+              </li>
+              <li class="cart-order__item">
+                <label class="cart-order__label">Email:</label>
+                <p class="cart-order__text">{{ order.user.email }}</p>
+              </li>
+              <li class="cart-order__item">
+                <label class="cart-order__label">電話:</label>
+                <p class="cart-order__text">{{ order.user.tel }}</p>
+              </li>
+              <li class="cart-order__item">
+                <label class="cart-order__label">地址:</label>
+                <p class="cart-order__text">{{ order.user.address }}</p>
+              </li>
+              <li class="cart-order__item">
+                <label class="cart-order__label">付款方式:</label>
+                <p class="cart-order__text">{{ order.payment }}</p>
+              </li>
+            </ul>
           </div>
-          <button class="btn btn-primary rounded-pill btn-xl" @click="payOrder()">
+          <button type="button" class="btn btn-primary rounded-pill btn-xl" @click="payOrder()">
             付款
           </button>
-          <!-- <router-link to="/compelete" class="btn btn-primary rounded-pill btn-xl">
-            付款
-          </router-link> -->
         </div>
       </div>
     </section>
@@ -107,8 +139,12 @@ export default {
 
       this.axios.post(url).then((res) => {
         if (res.data.data.paid) {
+          this.$bus.$emit('notice-user', '付款成功');
           this.$router.push(`/complete/${this.orderId}`);
         }
+        this.isLoading = false;
+      }).catch(() => {
+        this.$bus.$emit('notice-user', 'Oops~您已經付過款項了');
         this.isLoading = false;
       });
     },

@@ -1,35 +1,27 @@
 <template>
   <div class="page">
-    <loading :active.sync="isLoading"></loading>
+    <loading :active.sync="isLoading">
+        <div class="loadingio-spinner-ripple-wu44vrvts1">
+          <img src="../../assets/gym.png" alt="">
+        </div>
+    </loading>
     <navbar></navbar>
     <section class="section">
       <div class="cart-page">
         <div class="container">
           <!-- 流程部分 -->
           <ul class="shop-step">
-            <li class="shop-step__list">
+            <li class="shop-step__list" :class="{complete: !cartsEmpty}">
               <div class="shop-step__num">1</div>
-              <h4 class="shop-step__text">
-                購物車訂單<i class="fas fa-shopping-cart"></i>
-              </h4>
-            </li>
-            <li class="shop-step__list shop-step__list--arrow">
-              <i class="fas fa-angle-right"></i>
+              <div>訂單</div>
             </li>
             <li class="shop-step__list">
               <div class="shop-step__num">2</div>
-              <h4 class="shop-step__text">
-                收件人資料<i class="fas fa-edit"></i>
-              </h4>
-            </li>
-            <li class="shop-step__list shop-step__list--arrow">
-              <i class="fas fa-angle-right"></i>
+              <div>付款</div>
             </li>
             <li class="shop-step__list">
               <div class="shop-step__num">3</div>
-              <h4 class="shop-step__text">
-                購物完成<i class="fas fa-check-circle"></i>
-              </h4>
+              <div>完成</div>
             </li>
           </ul>
           <!-- 流程部分 END -->

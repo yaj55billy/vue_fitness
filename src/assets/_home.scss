@@ -1,0 +1,16 @@
+.home{
+
+  &-location{
+    &__body{
+      padding: 25px 0;
+    }
+    &__title,&__text{
+      color: #fff;
+    }
+    &__map{
+      @media screen and (max-width: 991px) {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,12 +1,35 @@
 
 // 前台產品 ---
 .prod{
-  position: relative;
+  margin: 60px auto;
   transition: all 0.5s;
 
-  &-body{
+  &-filter{ // 上方分類
+    font-size: 0;
     text-align: left;
+    &__list{
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 10px;
+      margin-top: 5px;
+      .btn-primary.btn-sm{
+        &.active,&:hover{
+          background-color: #3ca;
+        }
+      }
+    }
   }
+
+  &-card{
+    position: relative;
+    &:hover{
+      box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.2);
+      .prod-cart{
+        bottom: 15px;
+      }
+    }
+  }
+
   &-pic{ // 圖片
     position: relative;
     overflow: hidden;
@@ -60,12 +83,6 @@
     }
   }
 
-  &:hover{
-    box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.2);
-    .prod-cart{
-      bottom: 15px;
-    }
-  }
 }
 
 // 前台產品 END ---

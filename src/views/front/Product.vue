@@ -1,8 +1,9 @@
 <template>
   <div class="">
     <loading :active.sync="isLoading"></loading>
-    <div class="container">
-      <navbar></navbar>
+    <navbar></navbar>
+
+    <div class="container" style="margin-top: 120px">
       <div class="row align-items-center">
         <div class="col-md-7">
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -63,32 +64,39 @@
           </div>
         </div>
       </div>
-      <div class="row my-5">
-        <div class="col-md-4">
-          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-            sed diam voluptua. At vero eos et accusam et</p>
-        </div>
-        <div class="col-md-3">
-          <p class="text-muted">Lorem ipsum dolor sit amet,
-            consetetur sadipscing elitr, sed diam nonumy eirmod tempor</p>
-        </div>
+      <hr>
+
+      <!-- 購課須知 -->
+      <div class="">
+        <h3>購課須知</h3>
       </div>
-      <h3 class="font-weight-bold">Lorem ipsum dolor sit amet</h3>
-      <div class="swiper-container mt-4 mb-5">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="card border-0 mb-4 position-relative position-relative">
-              <img src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80" class="card-img-top rounded-0" alt="...">
-              <a href="#" class="text-dark">
+      <!-- 購課須知 END -->
+
+      <hr>
+
+      <h3 class="font-weight-bold">您可能有興趣的課程</h3>
+      <div class="row">
+        <div class="col-lg-4 col-md-6" v-for="item in relatedProducts" :key="item.id">
+          <div class="card prod-card mb-4">
+            <div class="prod-pic">
+              <img :src="item.imageUrl[0]" class="card-img-top" :alt="item.title">
+              <a href="" class="prod-cart" @click.prevent="addToCart(item.id)">
+                <i class="fas fa-cart-plus"></i>
               </a>
-              <div class="card-body p-0">
-                <h4 class="mb-0 mt-3"><a href="#">Lorem ipsum</a></h4>
-                <p class="card-text mb-0">
-                  NT$1,080 <span class="text-muted "><del>NT$1,200</del></span></p>
-                <p class="text-muted mt-3"></p>
+            </div>
+            <div class="card-body prod-body text-left">
+              <h4 class="mb-0">{{ item.title }}</h4>
+              <p class="text-muted mt-3 prod-content">{{ item.content }}</p>
+              <div class="prod-price">
+                <div class="float-left">
+                  <del>NT${{ item.origin_price | toThousands }}</del>
+                </div>
+                <div class="float-right prod-price__special">
+                  NT${{ item.price | toThousands }}
+                </div>
               </div>
             </div>
+            <router-link :to="`/product/${item.id}`" class="prod-link"></router-link>
           </div>
         </div>
       </div>
@@ -110,6 +118,7 @@ export default {
   data() {
     return {
       product: [],
+      relatedProducts: [],
       isLoading: false,
     };
   },
@@ -122,12 +131,23 @@ export default {
       this.product = res.data.data;
       this.isLoading = false;
     });
+
+    this.getRelatedProducts();
   },
-  // computed: {
-  //   count() {
-  //     const x = this.product.imageUrl;
-  //     return x;
-  //   },
-  // },
+  methods: {
+    getRelatedProducts() {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products`;
+      this.axios.get(url).then((res) => {
+        res.data.data.filter((item) => {
+          if (item.category === this.product.category) {
+            this.relatedProducts.push(item);
+          }
+          return item;
+        });
+        this.isLoading = false;
+      });
+    },
+  },
 };
 </script>

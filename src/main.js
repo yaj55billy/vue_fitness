@@ -63,13 +63,13 @@ configure({
 });
 /* 驗證相關 END */
 
-Vue.prototype.$bus = new Vue();
-
-Vue.filter('toThousands', (para) => {
+Vue.filter('toThousands', (para = 0) => {
   const parts = para.toString().split('.');
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return parts.join('.');
 });
+
+Vue.prototype.$bus = new Vue();
 
 new Vue({
   router,

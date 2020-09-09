@@ -1,6 +1,12 @@
 <template>
   <div class="login-page">
-    <loading :active.sync="isLoading"></loading>
+    <loading :active.sync="isLoading">
+      <div class="loadingio-spinner-ball-h1u60i2wsu">
+        <div class="ldio-ivekc1fyg2">
+          <div></div>
+        </div>
+      </div>
+    </loading>
     <form class="form-signin" @submit.prevent="signin">
       <h1 class="h3 mb-3 font-weight-normal">
         請先登入

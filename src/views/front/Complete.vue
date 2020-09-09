@@ -1,6 +1,12 @@
 <template>
   <div class="page">
-    <loading :active.sync="isLoading"></loading>
+    <loading :active.sync="isLoading">
+      <div class="loadingio-spinner-ball-h1u60i2wsu">
+        <div class="ldio-ivekc1fyg2">
+          <div></div>
+        </div>
+      </div>
+    </loading>
     <navbar></navbar>
     <section class="section">
       <div class="cart-page">
@@ -32,7 +38,7 @@
           <div class="cart-complete">
             <h2 class="cart-complete__title">感謝您的購買!</h2>
             <p class="cart-complete__text">
-              我們將於 3 個工作天內與您聯繫，若有任何問題也可撥打 02-3456-7890
+              我們將於 1~3 個工作天內與您聯繫，若有任何問題也可撥打 02-3456-7890 聯繫我們。
             </p>
           </div>
 

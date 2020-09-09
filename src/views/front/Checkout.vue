@@ -1,6 +1,12 @@
 <template>
   <div class="page">
-    <loading :active.sync="isLoading"></loading>
+    <loading :active.sync="isLoading">
+      <div class="loadingio-spinner-ball-h1u60i2wsu">
+        <div class="ldio-ivekc1fyg2">
+          <div></div>
+        </div>
+      </div>
+    </loading>
     <navbar></navbar>
     <section class="section">
       <div class="cart-page">

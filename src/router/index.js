@@ -7,18 +7,12 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/', // 路徑
-    name: 'Shop', // 名字
     component: Shop,
     children: [
       {
         path: '',
         name: 'Home',
         component: () => import('../views/front/Home.vue'),
-      },
-      {
-        path: 'about',
-        name: 'About',
-        component: () => import('../views/front/About.vue'),
       },
       {
         path: 'products',
@@ -64,7 +58,7 @@ const routes = [
       },
       {
         path: 'products',
-        name: 'Products',
+        name: 'adminProducts',
         component: () => import('../views/admin/Products.vue'),
       },
       {

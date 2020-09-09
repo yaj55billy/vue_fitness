@@ -1,6 +1,13 @@
 <template>
   <div class="">
-    <loading :active.sync="isLoading"></loading>
+    <loading :active.sync="isLoading">
+      <div class="loadingio-spinner-ball-h1u60i2wsu">
+        <div class="ldio-ivekc1fyg2">
+          <div></div>
+        </div>
+      </div>
+    </loading>
+
     <navbar></navbar>
 
     <!-- product banner  -->
@@ -14,19 +21,20 @@
     <div class="container prod">
       <ul class="list-unstyled prod-filter">
         <li class="prod-filter__list">
-          <a href="#" class="btn-primary rounded-pill btn-sm"
+          <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
           :class="{active: nowCategory === '全部課程'}"
           @click.prevent="productHandler('全部課程')">
             全部課程
           </a>
         </li>
         <li v-for="item in filterNotRepeat" :key="item" class="prod-filter__list">
-          <a href="#" class="btn-primary rounded-pill btn-sm"
+          <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
           :class="{active: item === nowCategory}"
           @click.prevent="productHandler(item)">{{ item }}</a>
         </li>
       </ul>
-      <div class="row">
+
+      <div class="row mt-4">
         <div class="col-lg-4 col-md-6" v-for="item in nowProducts" :key="item.id">
           <div class="card prod-card mb-4">
             <div class="prod-pic">
@@ -75,21 +83,21 @@ export default {
   data() {
     return {
       products: [],
-      nowProducts: [],
-      nowCategory: '',
+      nowProducts: [], // 取得目前產品有哪些
+      nowCategory: '', // 取得現在分類 +active 判斷用
       pagination: {},
       isLoading: false,
     };
   },
   created() {
     this.getProducts();
-    this.productHandler(); // 初始值
+    this.productHandler();
   },
   computed: {
     filterCategory() {
       return this.products.map((item) => item.category);
     },
-    filterNotRepeat() {
+    filterNotRepeat() { // 取出不重覆的 filter
       return this.filterCategory.filter((element, index, arr) => arr.indexOf(element) === index);
     },
   },
@@ -110,13 +118,16 @@ export default {
         product: id,
         quantity,
       };
+      this.isLoading = true;
       this.axios.post(url, cart).then(() => {
         this.$bus.$emit('notice-user', '商品已成功加入購物車');
+        this.isLoading = false;
       }).catch((error) => {
         this.$bus.$emit('notice-user', error.response.data.errors[0]);
+        this.isLoading = false;
       });
     },
-    productHandler(catchVal = '全部課程') {
+    productHandler(catchVal = '全部課程') { // 判斷產品 filter
       this.nowProducts = [];
       if (catchVal === '全部課程') {
         this.nowCategory = catchVal;

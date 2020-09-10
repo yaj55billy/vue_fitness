@@ -11,10 +11,16 @@
     <navbar></navbar>
 
     <!-- product banner  -->
-    <div class="position-relative d-flex align-items-center
-    justify-content-center banner" style="min-height: 550px;">
-      <div class="position-absolute" style="top:0; bottom: 0; left: 0; right: 0; background-image: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/vnty7mxNMzR8GVgqSrbDlLJxyrkGRZsrz8t03ckt0VTMfj6Nr4P83LpSeCddwJmrmoGGrWi1nk70EUsGSlAYPICGHK7dIyGMFWLmCHt5nS9nt8wGrdvUSY6WOXVNSfJz.jpg); background-position: center center; opacity: 0.6;"></div>
-      <h2 class="font-weight-bold">課程列表</h2>
+
+    <div class="position-relative banner">
+      <div class="position-absolute banner-prodbg"></div>
+      <div class="container d-flex flex-column banner-body banner-body-prod">
+        <div class="row justify-content-center my-auto">
+          <div class="col-md-6 banner-textarea wow animate__fadeInDown" data-wow-duration="3s">
+            <h3 class="banner-textarea__title">課程列表</h3>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- product banner END -->
 
@@ -35,7 +41,9 @@
       </ul>
 
       <div class="row mt-4">
-        <div class="col-lg-4 col-md-6" v-for="item in nowProducts" :key="item.id">
+
+        <div class="col-lg-4 col-md-6"
+         v-for="item in nowProducts" :key="item.id">
           <div class="card prod-card mb-4">
             <div class="prod-pic">
               <img :src="item.imageUrl[0]" class="card-img-top" :alt="item.title">
@@ -58,6 +66,7 @@
             <router-link :to="`/product/${item.id}`" class="prod-link"></router-link>
           </div>
         </div>
+
       </div>
       <nav class="d-flex justify-content-center">
         <pagination :pagedata="pagination" @update="getProducts"></pagination>

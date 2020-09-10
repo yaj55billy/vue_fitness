@@ -122,15 +122,11 @@ export default {
     if (this.orderId) {
       this.getDetailed(this.orderId);
     }
-
-    // this.getOrders();
   },
   methods: {
     getDetailed(id) {
       this.isLoading = true;
       this.orderId = id;
-
-      // const url = `${process.env.VUE_APP_APIPATH}/api/${this.uuid}/ec/orders/${id}`;
 
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders/${id}`;
 
@@ -154,7 +150,6 @@ export default {
         this.isLoading = false;
       });
     },
-
   },
 };
 </script>

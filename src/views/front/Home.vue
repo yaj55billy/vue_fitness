@@ -4,10 +4,10 @@
 
     <!-- banner -->
     <div class="position-relative banner">
-      <div class="position-absolute banner-bg"></div>
+      <div class="position-absolute banner-indexbg"></div>
       <div class="container d-flex flex-column banner-body">
         <div class="row justify-content-center my-auto">
-          <div class="col-md-6 banner-textarea">
+          <div class="col-md-6 banner-textarea wow animate__fadeInDown" data-wow-duration="3s">
             <!-- <h2 class="banner-textarea__title">Lorem ipsum.</h2> -->
             <p class="mb-0 banner-textarea__text">
               想讓身體更健康、更強壯嗎? <br>
@@ -26,9 +26,9 @@
       <h2>關於我們</h2>
       <div class="row">
         <div class="col-md-6">
-          <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/shcmC7WhOjZFX3wksjAU5jqI1fYxntSCzcoEolKucbSd6AXbFhkUsoTjQfeHo2LPrcF1MXz1LscEfGKKpIyg5JFf7WWdBGolySlCPZ6VtstexHFyw5OBiG3mb6RMAUup.jpg" alt="教練" title="Tony 教練" class="img-fluid">
+          <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/shcmC7WhOjZFX3wksjAU5jqI1fYxntSCzcoEolKucbSd6AXbFhkUsoTjQfeHo2LPrcF1MXz1LscEfGKKpIyg5JFf7WWdBGolySlCPZ6VtstexHFyw5OBiG3mb6RMAUup.jpg" alt="教練" title="Tony 教練" class="img-fluid wow animate__fadeIn" data-wow-duration="2s">
         </div>
-        <div class="col-md-6 m-auto text-left">
+        <div class="col-md-6 m-auto text-left wow animate__fadeInRight" data-wow-duration="2s">
           <h4 class="mt-4">關於 FitSpace</h4>
           <p class="text-muted">
             現在的社會相當方便，我們幾乎可以隔著螢幕就完成許多事情，

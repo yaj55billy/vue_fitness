@@ -1,6 +1,6 @@
 .banner{
   position: relative;
-  &-bg{
+  &-indexbg{
     top: 0;
     bottom: 0;
     left: 0;
@@ -10,9 +10,23 @@
     background-size: cover;
     opacity: 0.6;
   }
+  &-prodbg{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/gpNODmnfwGZCON1f1W7dOYALSisqOCi9GprW6cWJ2iYLGrBC2oKN73ckLLbC37P9IPJ4F7SlqKaEO06zhq2Hph1ZdZfpJSeQvn7EdOKch2Il2xyQH6WcrtvrhqXTEioR.jpg);
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.6;
+  }
+
 
   &-body{
     min-height: 100vh;
+    &-prod{
+      min-height: 450px;
+    }
   }
 
   &-textarea{

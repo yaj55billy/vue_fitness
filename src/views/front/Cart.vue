@@ -235,7 +235,6 @@ export default {
       this.axios.get(url)
         .then((res) => {
           if (res.data.data.length === 0) {
-            console.log('購物車沒有商品');
             this.cartsEmpty = true; // 確認購物車沒有商品
             this.isLoading = false;
           } else {
@@ -254,12 +253,10 @@ export default {
     deleteCartItem(id) { // 刪除購物車某筆資料
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping/${id}`;
-      this.axios.delete(url).then((res) => {
-        console.log(res);
+      this.axios.delete(url).then(() => {
         this.getCart(); // 要重新運算
         this.isLoading = false;
-      }).catch((error) => {
-        console.log(error);
+      }).catch(() => {
         this.isLoading = false;
       });
     },
@@ -289,9 +286,7 @@ export default {
             this.$router.push(`/checkout/${res.data.data.id}`);
           }
           this.isLoading = false;
-        }).catch((error) => {
-          const errorData = error.response.data.errors;
-          console.log(errorData);
+        }).catch(() => {
           this.$bus.$emit('notice-user', '訂單送出失敗，再檢查看看');
           this.isLoading = false;
         });

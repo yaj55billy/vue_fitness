@@ -5,8 +5,9 @@ import $ from 'jquery';
 import VueAxios from 'vue-axios';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
-/* 驗證相關 import Start */
 
+import 'animate.css';
+import WOW from 'wow.js';
 // VeeValidate
 // https://logaretm.github.io/vee-validate/guide/rules.html#rules
 import {
@@ -23,6 +24,9 @@ import {
 /* 驗證相關 import END */
 import App from './App.vue';
 import router from './router';
+/* 驗證相關 import Start */
+
+new WOW().init();
 
 Vue.config.productionTip = false;
 

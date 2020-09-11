@@ -11,6 +11,7 @@
     <section class="section">
       <div class="cart-page">
         <div class="container">
+
           <!-- 流程部分 -->
           <ul class="shop-step">
             <li class="shop-step__list" :class="{complete: !cartsEmpty}">
@@ -43,7 +44,6 @@
                 點擊上方按鈕去物色喜歡的課程吧 !
               </h2>
             </div>
-
           </div>
 
           <div v-else>
@@ -184,12 +184,6 @@
                 </div>
               </form>
             </validation-observer>
-
-            <!-- <div class="btn-area right mt-4">
-              <router-link to="/checkout" class="btn btn-primary rounded-pill btn-xl">
-                前往結帳
-              </router-link>
-            </div> -->
           </div>
         </div>
       </div>

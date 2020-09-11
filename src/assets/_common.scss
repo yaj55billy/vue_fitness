@@ -13,14 +13,15 @@
   margin-right: 4px;
 }
 
-
+.font-ubuntu{
+  font-family: 'Ubuntu', sans-serif;
+}
 
 .section{
   padding: 120px 0 60px;
 }
 
 // 按鈕部分
-
 .btn{
   &-xl{
     padding: 15px 65px;
@@ -38,7 +39,6 @@
 
   &-sm{
     padding: 6px 14px;
-    // padding: 6px 40px;
   }
 
   &-area{
@@ -54,9 +54,7 @@
     }
   }
 }
-
 // 按鈕部分 END
-
 
 // loading 
 @keyframes ldio-ivekc1fyg2 {
@@ -74,7 +72,6 @@
     transform: translate(0,0);
   }
 }
-
 .ldio-ivekc1fyg2 div {
   position: absolute;
   width: 50px;
@@ -103,3 +100,11 @@
 .ldio-ivekc1fyg2 div { box-sizing: content-box; }
 
 // loading END
+
+.ani-infi{
+  animation-iteration-count: infinite;
+}
+
+.ani-infi3{
+  animation-iteration-count: 3;
+}

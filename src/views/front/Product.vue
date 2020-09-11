@@ -7,7 +7,6 @@
         </div>
       </div>
     </loading>
-
     <navbar></navbar>
 
     <div class="container prod-detail">

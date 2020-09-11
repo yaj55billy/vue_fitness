@@ -21,7 +21,6 @@
     opacity: 0.6;
   }
 
-
   &-body{
     min-height: 100vh;
     &-prod{
@@ -38,5 +37,17 @@
     &__text{
       color: #fff;
     }
+  }
+
+  &-arrow{
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: inline-block;
+    width: 50px;
+    font-size: 50px;
+    color: #fff;
   }
 }

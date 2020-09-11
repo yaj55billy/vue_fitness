@@ -11,7 +11,6 @@
     <navbar></navbar>
 
     <!-- product banner  -->
-
     <div class="position-relative banner">
       <div class="position-absolute banner-prodbg"></div>
       <div class="container d-flex flex-column banner-body banner-body-prod">
@@ -41,7 +40,6 @@
       </ul>
 
       <div class="row mt-4">
-
         <div class="col-lg-4 col-md-6"
          v-for="item in nowProducts" :key="item.id">
           <div class="card prod-card mb-4">

@@ -7,7 +7,9 @@
         </div>
       </div>
     </loading>
+
     <navbar></navbar>
+
     <section class="section">
       <div class="cart-page">
         <div class="container">
@@ -56,7 +58,7 @@
           <!-- 訂單內容 END -->
 
           <div class="row justify-content-end">
-            <div class="col-md-4 cart-footer__total ">
+            <div class="col-md-4 cart-footer__total">
               <div class="cart-footer__total--item mt-2">
                 <p class="mb-0 h4 font-weight-bold">總計</p>
                 <p class="mb-0 h4 font-weight-bold">$ {{ order.amount | toThousands }}</p>
@@ -90,7 +92,8 @@
               </li>
             </ul>
           </div>
-          <button type="button" class="btn btn-primary rounded-pill btn-xl" @click="payOrder()">
+          <button type="button" class="btn btn-primary rounded-pill btn-xl"
+          @click="payOrder()">
             付款
           </button>
         </div>
@@ -127,9 +130,7 @@ export default {
     getDetailed(id) {
       this.isLoading = true;
       this.orderId = id;
-
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders/${id}`;
-
       this.axios.get(url).then((res) => {
         this.order = res.data.data;
         this.isLoading = false;

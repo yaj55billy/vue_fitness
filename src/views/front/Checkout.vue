@@ -69,7 +69,7 @@
           <!-- 購買者內容 -->
           <div class="cart-order">
             <h3 class="text-left">訂購人資料</h3>
-            <ul class="cart-order__list">
+            <ul class="cart-order__list" v-if="order.user">
               <li class="cart-order__item">
                 <label class="cart-order__label">姓名:</label>
                 <p class="cart-order__text">{{ order.user.name }}</p>
@@ -116,26 +116,22 @@ export default {
   data() {
     return {
       orderId: '',
-      order: [],
+      order: {},
       isLoading: false,
     };
   },
   created() {
     this.orderId = this.$route.params.orderId; // 取上方網址參數 (id)
     if (this.orderId) {
-      this.getDetailed(this.orderId);
-    }
-  },
-  methods: {
-    getDetailed(id) {
       this.isLoading = true;
-      this.orderId = id;
-      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders/${id}`;
+      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders/${this.orderId}`;
       this.axios.get(url).then((res) => {
         this.order = res.data.data;
         this.isLoading = false;
       });
-    },
+    }
+  },
+  methods: {
     payOrder() {
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders/${this.orderId}/paying`;

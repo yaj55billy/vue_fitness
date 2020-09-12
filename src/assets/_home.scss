@@ -13,6 +13,10 @@
   }
 
   &-location{
+    background-image: url('https://hexschool-api.s3.us-west-2.amazonaws.com/custom/PvBSCExiQ3ZdgQwZOwlIanojcdirZ7MWP47nyCm389RQsGpvyg52GYjtGyf6Y4p3qZudbylSXitl8nCSyoIBd5QDrpuUBl1N9KtKFjSZZctRJuW2GkMffRC4NHGBNrhZ.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+
     .home-title{
       color: #fff;
       &:after{

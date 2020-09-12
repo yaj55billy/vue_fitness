@@ -69,7 +69,7 @@
                       type="number"
                       class="cart-info__input"
                       v-model="item.quantity"
-                      min="1">
+                      min="1" disabled>
                     <button
                       type="button"
                       class="btn-cart"
@@ -234,6 +234,7 @@ export default {
           } else {
             this.carts = res.data.data;
             this.updateTotal();
+            this.$bus.$emit('cart-num', '');
             this.isLoading = false;
           }
         });

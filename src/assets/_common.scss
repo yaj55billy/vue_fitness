@@ -1,5 +1,9 @@
 /* ------------------- 共用 -------------------- */
 
+.app{
+  overflow: hidden;
+}
+
 .logo{
   font-family: 'Ubuntu', sans-serif;
   font-size: 1.5rem;
@@ -20,6 +24,62 @@
 .section{
   padding: 120px 0 60px;
 }
+
+// banner
+.banner{
+  position: relative;
+  &-indexbg{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/alqrF9oIpSorn9gAJUEaTjrbLqpGThxMX4UxrrOhzBAsCfZpCjGIb0fFcKIOfl6wTZIBlcyTcg7iSnFrW0nXayhHnPsaP2BqVgs7n3yRbJzmsyuOOxJsJRAQj6vf3dxz.jpg);
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.6;
+  }
+  &-prodbg{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(https://hexschool-api.s3.us-west-2.amazonaws.com/custom/gpNODmnfwGZCON1f1W7dOYALSisqOCi9GprW6cWJ2iYLGrBC2oKN73ckLLbC37P9IPJ4F7SlqKaEO06zhq2Hph1ZdZfpJSeQvn7EdOKch2Il2xyQH6WcrtvrhqXTEioR.jpg);
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.6;
+  }
+
+  &-body{
+    min-height: 100vh;
+    &-prod{
+      min-height: 450px;
+    }
+  }
+
+  &-textarea{
+    background-color: rgba(0,0,0,0.4);
+    padding: 40px;
+    &__title{
+      color: #fff;
+    }
+    &__text{
+      color: #fff;
+    }
+  }
+
+  &-arrow{
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: inline-block;
+    width: 50px;
+    font-size: 50px;
+    color: #fff;
+  }
+}
+// banner END
 
 // 按鈕部分
 .btn{
@@ -107,4 +167,93 @@
 
 .ani-infi3{
   animation-iteration-count: 3;
+}
+
+.nav-item{
+  margin-right: 1.5rem;
+  &:last-child{
+    margin-right: 0;
+  }
+  @media screen and (max-width: 991px) {
+    margin-right: 0;
+  }
+  .badge{
+    border-radius: 10px;
+    transform: translateY(-8px) translateX(-6px);
+    padding: 0.20em 0.4em;
+  }    
+}
+
+.sidebar{
+  min-height: 100vh;
+  @media screen and (max-width: 767px){
+    min-height: auto;
+  }
+}
+
+
+// 前台 table
+.table {
+  th,
+  td {
+    vertical-align: middle;
+    padding: 0.6rem;
+  }
+}
+
+// 後台 table
+.table-admin{
+  text-align: left;
+  th,
+  td {
+    vertical-align: middle;
+    padding: 0.6rem;
+  }
+  tbody{
+    tr{
+      &:nth-child(odd){
+        background-color: lighten($primary,72%);
+      }
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .table-rwd{
+    min-width: 100%;
+    thead{
+      display: none;
+    }
+    tr{
+      display: block;
+      border: 1px solid #ddd;
+      margin-top: 12px;
+      &:nth-child(1){
+        margin-top: 0;
+      }
+    }
+    th,td{
+      border-top: none;
+    }
+    td{
+      display: block;
+      width: 100%;
+      font-size: 15px;
+      overflow: hidden;
+      &:before{
+        content: attr(data-th) " : ";
+        display: inline-block;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.table-cart{
+  &__tr{
+    border-top: solid 1px $primary;
+    border-bottom: solid 1px $primary;
+  }
 }

@@ -128,9 +128,11 @@ export default {
       this.isLoading = true;
       this.axios.post(url, cart).then(() => {
         this.$bus.$emit('notice-user', '商品已成功加入購物車');
+        this.$bus.$emit('cart-num', '');
         this.isLoading = false;
       }).catch((error) => {
         this.$bus.$emit('notice-user', error.response.data.errors[0]);
+        this.$bus.$emit('cart-num', '');
         this.isLoading = false;
       });
     },

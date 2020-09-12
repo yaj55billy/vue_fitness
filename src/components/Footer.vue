@@ -1,23 +1,17 @@
 <template>
-  <div class="bg-dark py-5">
+  <div class="bg-dark">
     <div class="container">
-      <div class="d-flex align-items-center justify-content-between text-white mb-md-7 mb-4">
-        <a class="text-white h4 logo" href="./index.html">FitSpace</a>
-        <!-- <ul class="d-flex list-unstyled mb-0 h4">
-          <li><a href="#" class="text-white mx-3"><i class="fab fa-facebook"></i></a></li>
-          <li><a href="#" class="text-white mx-3"><i class="fab fa-instagram"></i></a></li>
-          <li><a href="#" class="text-white ml-3"><i class="fab fa-line"></i></a></li>
-        </ul> -->
-      </div>
-      <div class="d-flex flex-column flex-md-row
-      justify-content-between align-items-md-end
-      align-items-start text-white">
-        <div class="mb-md-0 mb-1">
-          <p class="mb-0">02-3456-7890</p>
-          <p class="mb-0">service@mail.com</p>
+      <div class="row py-4 d-flex align-items-center">
+        <div class="col-lg-12 d-flex justify-content-center">
+          <p class="mb-0 text-light">Copyright © 2020
+            <span class="font-ubuntu">FitSpace</span>
+            All Rights Reserved. | 僅個人學習，無任何商業用途
+            <router-link to="/admin/products"
+              class="btn btn-sm btn-outline-light ml-2">管理者</router-link>
+          </p>
         </div>
-        <p class="mb-0">© 2020 LOGO All Rights Reserved.</p>
       </div>
+      <!-- <router-link to="/login" class="nav-item nav-link mr-4 text-white">登入</router-link> -->
     </div>
   </div>
 </template>

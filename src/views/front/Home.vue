@@ -98,7 +98,7 @@
               </div>
               <div class="card-body prod-body text-left">
                 <h4 class="mb-0">健身綜合</h4>
-                <p class="text-muted mt-3 prod-content">文案</p>
+                <p class="text-muted mt-3 prod-content">為 1 對 1的教學課程，從身體評估、目標了解到操作器械以達到鍛鍊效果。</p>
                 <div class="prod-price">
                   <div class="float-left">
                     <del>NT$1,200</del>

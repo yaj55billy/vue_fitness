@@ -1,15 +1,13 @@
 <template>
   <div class="home">
     <navbar></navbar>
-
-    <!-- banner -->
     <div class="position-relative banner">
       <div class="position-absolute banner-indexbg"></div>
       <i class="fas fa-angle-down banner-arrow wow animate__fadeInDown ani-infi"
-      data-wow-delay="2s" data-wow-duration="2s"></i>
+      data-wow-delay="2s" data-wow-duration="1.5s"></i>
       <div class="container d-flex flex-column banner-body">
         <div class="row justify-content-center my-auto">
-          <div class="col-md-6 banner-textarea wow animate__fadeInDown" data-wow-duration="2s">
+          <div class="col-md-6 banner-textarea wow animate__fadeInDown" data-wow-duration="1s">
             <p class="mb-0 banner-textarea__text">
               想讓身體更健康、更強壯嗎? <br>
               <span class="shopname">FitSpace</span>能夠提供給您正確的飲食知識、運動方法
@@ -25,19 +23,16 @@
         </div>
       </div>
     </div>
-    <!-- banner END -->
-
-    <!-- 關於我們 -->
     <div class="home-about mt-6 mb-6">
       <div class="container">
         <h2 class="home-title">
           關於我們
         </h2>
         <div class="row">
-          <div class="col-md-6">
-            <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/shcmC7WhOjZFX3wksjAU5jqI1fYxntSCzcoEolKucbSd6AXbFhkUsoTjQfeHo2LPrcF1MXz1LscEfGKKpIyg5JFf7WWdBGolySlCPZ6VtstexHFyw5OBiG3mb6RMAUup.jpg" alt="教練" title="Tony 教練" class="img-fluid wow animate__fadeIn" data-wow-duration="2s">
+          <div class="col-md-4">
+            <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/shcmC7WhOjZFX3wksjAU5jqI1fYxntSCzcoEolKucbSd6AXbFhkUsoTjQfeHo2LPrcF1MXz1LscEfGKKpIyg5JFf7WWdBGolySlCPZ6VtstexHFyw5OBiG3mb6RMAUup.jpg" alt="教練" title="Tony 教練" class="img-fluid wow animate__fadeIn" data-wow-duration=".5s">
           </div>
-          <div class="col-md-6 m-auto text-left wow animate__fadeInRight" data-wow-duration="2s">
+          <div class="col-md-8 m-auto text-left wow animate__fadeIn" data-wow-duration=".5s">
             <h4 class="mt-4">關於 <span class="font-ubuntu">FitSpace</span></h4>
             <p class="text-muted">
               現在的社會相當方便，我們幾乎可以隔著螢幕就完成許多事情，
@@ -61,9 +56,6 @@
       </div>
     </div>
 
-    <!-- 關於我們 END -->
-
-    <!-- 場館位置 -->
     <div class="bg-primary home-location pt-4 pb-4">
       <div class="container">
         <h2 class="home-title">
@@ -82,9 +74,7 @@
         </div>
       </div>
     </div>
-    <!-- 場館位置 END -->
 
-    <!-- 熱門課程 -->
     <div class="home-topic mt-6 mb-6">
       <div class="container">
         <h2 class="home-title">
@@ -167,14 +157,11 @@
         </div>
       </div>
     </div>
-
-    <!-- 熱門課程 END -->
     <pagebottom></pagebottom>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import navbar from '@/components/Navbar.vue';
 import pagebottom from '@/components/Footer.vue';
 

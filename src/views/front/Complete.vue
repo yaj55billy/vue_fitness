@@ -11,7 +11,6 @@
     <section class="section">
       <div class="cart-page">
         <div class="container">
-          <!-- 流程部分 -->
           <ul class="shop-step">
             <li class="shop-step__list complete">
               <div class="shop-step__num">1</div>
@@ -26,15 +25,12 @@
               <div>完成</div>
             </li>
           </ul>
-          <!-- 流程部分 END -->
-
           <div class="cart-title">
             <h2 style="">結帳完成</h2>
             <router-link to="/index" class="btn btn-outline-primary btn-md rounded-pill">
               回首頁
             </router-link>
           </div>
-
           <div class="cart-complete">
             <h2 class="cart-complete__title">感謝您的購買!</h2>
             <p class="cart-complete__text">
@@ -61,9 +57,6 @@ export default {
     return {
       isLoading: false,
     };
-  },
-  created() {
-
   },
 };
 </script>

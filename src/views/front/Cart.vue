@@ -11,8 +11,6 @@
     <section class="section">
       <div class="cart-page">
         <div class="container">
-
-          <!-- 流程部分 -->
           <ul class="shop-step">
             <li class="shop-step__list" :class="{complete: !cartsEmpty}">
               <div class="shop-step__num">1</div>
@@ -27,7 +25,6 @@
               <div>完成</div>
             </li>
           </ul>
-          <!-- 流程部分 END -->
 
           <div class="cart-title">
             <h2 style="">訂單</h2>
@@ -36,7 +33,6 @@
             </router-link>
           </div>
           <div class="" v-if="cartsEmpty === true">
-            <!-- 購物車內沒有商品  -->
             <div class="cart-empty">
               <h2 class="cart-empty__title">
                 QQ~~<br>
@@ -47,11 +43,10 @@
           </div>
 
           <div v-else>
-            <!-- 購物車內容 -->
             <ul class="cart-info">
               <li class="cart-info__list" v-for="item in carts" :key="item.product.id + 1">
                 <div class="cart-info__pic">
-                  <img :src="item.product.imageUrl[0]" alt="">
+                  <img :src="item.product.imageUrl[0]" :alt="item.product.title">
                 </div>
                 <div class="cart-info__con">
                   <h4 class="cart-info__title">{{ item.product.title }}</h4>
@@ -87,7 +82,6 @@
                 </div>
               </li>
             </ul>
-            <!-- 購物車內容 END -->
 
             <div class="row cart-footer">
               <div class="col-md-8 cart-footer__coupon">
@@ -118,7 +112,6 @@
             <validation-observer v-slot="{ invalid }">
               <form class="form mt-5" @submit.prevent="createOrder()">
                 <h3 class="text-left">填寫資料</h3>
-                <!-- 收件人姓名 -->
                 <div class="form-group">
                   <validation-provider rules="required" v-slot="{ errors, classes }">
                     <label for="username" class="text-left w-100">收件人姓名</label>
@@ -128,7 +121,6 @@
                   </validation-provider>
                 </div>
 
-                <!-- Email  -->
                 <div class="form-group">
                   <validation-provider rules="required|email" v-slot="{ errors, classes }">
                     <label for="email" class="text-left w-100">Email</label>
@@ -138,7 +130,6 @@
                   </validation-provider>
                 </div>
 
-                <!-- 電話 -->
                 <div class="form-group">
                   <validation-provider rules="required|min:8" v-slot="{ errors, classes }">
                     <label for="tel" class="text-left w-100">電話</label>
@@ -148,7 +139,6 @@
                   </validation-provider>
                 </div>
 
-                <!-- 地址 -->
                 <div class="form-group">
                   <validation-provider rules="required" v-slot="{ errors, classes }">
                     <label for="addr" class="text-left w-100">地址</label>
@@ -158,7 +148,6 @@
                   </validation-provider>
                 </div>
 
-                <!-- 購買方式 -->
                 <div class="form-group">
                   <label for="pay-method" class="text-left w-100">購買方式</label>
                   <select name="付款方式" id="pay-method" class="form-control"
@@ -223,13 +212,13 @@ export default {
     this.getCart();
   },
   methods: {
-    getCart() { // 取得購物車資訊
+    getCart() {
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`;
       this.axios.get(url)
         .then((res) => {
           if (res.data.data.length === 0) {
-            this.cartsEmpty = true; // 確認購物車沒有商品
+            this.cartsEmpty = true;
             this.isLoading = false;
           } else {
             this.carts = res.data.data;
@@ -239,13 +228,13 @@ export default {
           }
         });
     },
-    updateTotal() { // 計算總價
+    updateTotal() {
       this.cartTotal = 0; // 歸零，不然計算會有累加狀況。
       this.carts.forEach((item) => {
         this.cartTotal += item.product.price * item.quantity;
       });
     },
-    deleteCartItem(id) { // 刪除購物車某筆資料
+    deleteCartItem(id) {
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping/${id}`;
       this.axios.delete(url).then(() => {
@@ -255,7 +244,7 @@ export default {
         this.isLoading = false;
       });
     },
-    editCartItemNum(id, quantity) { // 編輯購物車內容
+    editCartItemNum(id, quantity) {
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`;
       const cart = {

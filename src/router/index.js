@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Shop from '../views/Shop.vue';
+import Index from '../views/Index.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/', // 路徑
-    component: Shop,
+    component: Index,
     children: [
       {
         path: '',

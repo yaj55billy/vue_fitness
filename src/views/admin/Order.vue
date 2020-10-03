@@ -44,13 +44,6 @@
   </div>
 </template>
 
-<style lang="scss">
-input[type="checkbox"]{
-  margin-right: 3px;
-  vertical-align: middle;
-}
-</style>
-
 <script>
 
 import pagination from '@/components/Pagination.vue';
@@ -77,13 +70,12 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/orders?page=${num}`;
       this.axios.get(api).then((res) => {
         this.orders = res.data.data;
-        this.pagination = res.data.meta.pagination; // 分頁的資料傳遞會用到
+        this.pagination = res.data.meta.pagination;
         this.isLoading = false;
       });
     },
     changePaidStatus(item) {
       if (item.paid) {
-        // true >> false
         this.paidLoading = true;
         const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}/unpaid`;
         this.axios.patch(url, item.id).then(() => {
@@ -92,7 +84,6 @@ export default {
           this.getOrders();
         });
       } else {
-        //  false >> true
         this.paidLoading = true;
         const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/orders/${item.id}/paid`;
         this.axios.patch(url, item.id).then(() => {
@@ -105,3 +96,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+input[type="checkbox"]{
+  margin-right: 3px;
+  vertical-align: middle;
+}
+</style>

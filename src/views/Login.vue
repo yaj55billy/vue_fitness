@@ -39,23 +39,6 @@
   </div>
 </template>
 
-<style lang="scss">
-  .login-page{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    background-color: #f5f5f5;
-  }
-  .form-signin{
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: auto;
-  }
-</style>
-
 <script>
 export default {
   data() {
@@ -76,18 +59,31 @@ export default {
         this.isLoading = false;
         const { token } = res.data;
         const { expired } = res.data;
-        /*
-          new Date(expired * 1000)
-          timestamp unix >> 一般時間格式
-        */
         document.cookie = `token=${token}; expires=${new Date(expired * 1000)}; path=/`;
         this.$bus.$emit('notice-user', '登入成功~~');
-        // 轉址一定要在 ajax 之後
         this.$router.push('/admin/products');
       }).catch(() => {
-
+        this.isLoading = false;
+        this.$bus.$emit('notice-user', '登入失敗，請再檢查帳密');
       });
     },
   },
 };
 </script>
+
+<style lang="scss">
+  .login-page{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+  }
+  .form-signin{
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+</style>

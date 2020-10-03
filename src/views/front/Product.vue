@@ -16,7 +16,7 @@
             <div class="carousel-inner">
               <div class="carousel-item" v-for="(item, index) in product.imageUrl"
               :key="item.id" :class="{active: index == 0}">
-                <img :src="item" class="d-block w-100" alt="...">
+                <img :src="item" class="d-block w-100" alt="">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls"
@@ -60,7 +60,6 @@
         </div>
       </div>
 
-      <!-- 購課須知 -->
       <div class="prod-detail__need mt-4">
         <h3 class="prod-detail__subtitle">購課須知</h3>
         <ul class="prod-detail__list">
@@ -70,9 +69,7 @@
           <li>疫情期間入館內皆須量體溫，我們也會頻繁實施館內消毒清潔。</li>
         </ul>
       </div>
-      <!-- 購課須知 END -->
 
-      <!-- 您可能也會喜歡 -->
       <div class="prod-detail__maybelike" v-if="relatedProducts.length !== 0">
         <h3 class="prod-detail__subtitle">您可能也會喜歡</h3>
         <div class="row">
@@ -98,7 +95,6 @@
           </div>
         </div>
       </div>
-      <!-- 您可能也會喜歡 END -->
     </div>
     <pagebottom></pagebottom>
   </div>
@@ -116,30 +112,34 @@ export default {
   },
   data() {
     return {
-      classNum: 1, // 課程數量
-      classMax: 36, // 課程最多
+      classNum: 1,
+      classMax: 36,
       product: [],
       relatedProducts: [],
       isLoading: false,
     };
   },
   created() {
-    this.isLoading = true;
-    const { id } = this.$route.params; // 解構直接抓 {}
-    this.axios.get(`${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/product/${id}`)
-      .then((res) => {
-        this.product = res.data.data;
-        this.isLoading = false;
-        this.getRelatedProducts();
-      }).catch((error) => {
-        this.$bus.$emit('notice-user', error.response.data.errors[0]);
-        this.isLoading = false;
-      });
+    this.getProduct();
   },
   methods: {
+    getProduct() {
+      this.isLoading = true;
+      const { id } = this.$route.params;
+      this.axios.get(`${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/product/${id}`)
+        .then((res) => {
+          this.product = res.data.data;
+          this.isLoading = false;
+          this.getRelatedProducts();
+        }).catch((error) => {
+          this.$bus.$emit('notice-user', error.response.data.errors[0]);
+          this.isLoading = false;
+        });
+    },
     getRelatedProducts() {
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products`;
+      this.relatedProducts = [];
       this.axios.get(url).then((res) => {
         res.data.data.filter((item) => {
           if (item.category === this.product.category && item.title !== this.product.title) {
@@ -150,7 +150,7 @@ export default {
         this.isLoading = false;
       });
     },
-    addToCart(id, quantity = 1) { // 加入到購物車
+    addToCart(id, quantity = 1) {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`;
       const cart = {
         product: id,
@@ -169,7 +169,7 @@ export default {
     },
     goOtherPage(id) {
       this.$router.push(`/product/${id}`);
-      window.location.reload();
+      this.getProduct();
     },
   },
 };

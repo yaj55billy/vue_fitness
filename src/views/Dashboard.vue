@@ -14,14 +14,11 @@
         </ul>
       </div>
     </nav>
-
     <div class="container-fluid">
       <div class="row">
-        <!-- 側邊 -->
         <nav class="col-lg-2 col-md-3 d-md-block bg-light sidebar">
           <div class="sidebar-sticky mt-4">
             <ul class="nav">
-              <!-- flex-column -->
               <li class="nav-item">
                 <router-link to="/admin/products"
                 class="nav-link font-weight-bold router-link-exact-active active">
@@ -49,15 +46,48 @@
             </ul>
           </div>
         </nav>
-        <!-- 後台主要內容，帶 :token 到其他頁 props 接收  -->
-
         <div class="col-lg-10 col-md-9 px-4">
-          <router-view :token="token" v-if="checkSuccess"></router-view>
+          <router-view v-if="checkSuccess"></router-view>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      token: '',
+      checkSuccess: false,
+    };
+  },
+  created() {
+    this.checkLogin();
+  },
+  methods: {
+    checkLogin() {
+      // 確認是否是有 token (登入)，沒有 token 則回 login 頁面
+      this.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');
+      this.axios.defaults.headers.common.Authorization = `Bearer ${this.token}`;
+      const api = `${process.env.VUE_APP_APIPATH}/auth/check`;
+      this.axios.post(api, {
+        api_token: this.token,
+      }).then(() => {
+        this.checkSuccess = true;
+      }).catch(() => {
+        this.$router.push('/login');
+      });
+    },
+    signout() {
+      // 登出
+      document.cookie = 'token=; expires=; path=/';
+      this.$bus.$emit('notice-user', '您已登出~~');
+      this.$router.push('/');
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 .nav{
@@ -81,39 +111,3 @@
   }
 }
 </style>
-
-<script>
-export default {
-  data() {
-    return {
-      token: '',
-      checkSuccess: false,
-    };
-  },
-  created() {
-    this.checkLogin();
-  },
-  methods: {
-    checkLogin() {
-      // 確認是否是有 token (登入)，沒有 token 則回 login 頁面
-      this.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');
-      this.axios.defaults.headers.common.Authorization = `Bearer ${this.token}`;
-      const api = `${process.env.VUE_APP_APIPATH}/auth/check`;
-
-      this.axios.post(api, {
-        api_token: this.token,
-      }).then(() => {
-        this.checkSuccess = true;
-      }).catch(() => {
-        this.$router.push('/login');
-      });
-    },
-    signout() {
-      // 登出
-      document.cookie = 'token=; expires=; path=/';
-      this.$bus.$emit('notice-user', '您已登出~~');
-      this.$router.push('/');
-    },
-  },
-};
-</script>

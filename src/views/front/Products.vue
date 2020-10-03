@@ -7,10 +7,7 @@
         </div>
       </div>
     </loading>
-
     <navbar></navbar>
-
-    <!-- product banner  -->
     <div class="position-relative banner">
       <div class="position-absolute banner-prodbg"></div>
       <div class="container d-flex flex-column banner-body banner-body-prod">
@@ -21,7 +18,6 @@
         </div>
       </div>
     </div>
-    <!-- product banner END -->
 
     <div class="container prod">
       <ul class="list-unstyled prod-filter">
@@ -90,7 +86,7 @@ export default {
   data() {
     return {
       products: [],
-      nowProducts: [], // 取得目前產品有哪些
+      nowProducts: [],
       nowCategory: '', // 取得現在分類 +active 判斷用
       pagination: {},
       isLoading: false,
@@ -104,7 +100,7 @@ export default {
     filterCategory() {
       return this.products.map((item) => item.category);
     },
-    filterNotRepeat() { // 取出不重覆的 filter
+    filterNotRepeat() {
       return this.filterCategory.filter((element, index, arr) => arr.indexOf(element) === index);
     },
   },
@@ -114,7 +110,7 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products?page=${num}`;
       this.axios.get(url).then((res) => {
         this.products = res.data.data;
-        this.pagination = res.data.meta.pagination; // 分頁的資料傳遞會用到
+        this.pagination = res.data.meta.pagination;
         this.nowProducts = res.data.data;
         this.isLoading = false;
       });
@@ -136,7 +132,7 @@ export default {
         this.isLoading = false;
       });
     },
-    productHandler(catchVal = '全部課程') { // 判斷產品 filter
+    productHandler(catchVal = '全部課程') {
       this.nowProducts = [];
       if (catchVal === '全部課程') {
         this.nowCategory = catchVal;

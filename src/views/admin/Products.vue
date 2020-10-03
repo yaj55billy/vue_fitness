@@ -1,6 +1,5 @@
 <template>
   <div class="mt-4">
-    <!-- vue-loading -->
     <loading :active.sync="isLoading"></loading>
     <h2>產品列表</h2>
     <div class="text-right mt-sm-2 mt-4">
@@ -41,11 +40,8 @@
       </tbody>
     </table>
 
-    <!-- 換頁元件 -->
     <pagination :pagedata="pagination" @update="getProducts"></pagination>
-    <!-- 換頁元件 END -->
 
-    <!-- 新增、編輯產品 -->
     <div id="productModal" class="modal fade"
      tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
@@ -91,9 +87,15 @@
                   <input type="file" class="form-control h-auto"
                   id="customFile" @change="uploadFile">
                 </div>
-                <img class="img-fluid" :src="tempProduct.imageUrl[0]" alt>
-                <img class="img-fluid" :src="tempProduct.imageUrl[1]" alt>
-                <img class="img-fluid" :src="tempProduct.imageUrl[2]" alt>
+                <img class="img-fluid"
+                :src="tempProduct.imageUrl[0]"
+                :alt="'課程示意: '+tempProduct.title">
+                <img class="img-fluid"
+                :src="tempProduct.imageUrl[1]"
+                :alt="'課程示意: '+tempProduct.title">
+                <img class="img-fluid"
+                :src="tempProduct.imageUrl[2]"
+                :alt="'課程示意: '+tempProduct.title">
               </div>
               <div class="col-sm-8">
                 <div class="form-group">
@@ -163,9 +165,7 @@
         </div>
       </div>
     </div>
-    <!-- 新增、編輯產品 END -->
 
-    <!-- 刪除產品 modal  -->
     <div id="delProductModal" class="modal fade"
       tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
@@ -194,7 +194,6 @@
         </div>
       </div>
     </div>
-    <!-- 刪除產品 modal END  -->
   </div>
 </template>
 
@@ -221,7 +220,6 @@ export default {
   },
   props: ['token'],
   created() {
-    // 初始取得產品列表
     this.getProducts();
   },
   methods: {
@@ -230,11 +228,10 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/products?page=${num}`;
       this.axios.get(api).then((res) => {
         this.products = res.data.data;
-        this.pagination = res.data.meta.pagination; // 分頁的資料傳遞會用到
+        this.pagination = res.data.meta.pagination;
         this.isLoading = false;
       });
 
-      // 從新增、編輯、刪除重新取得初始化 tempProduct
       if (this.tempProduct.id) {
         this.tempProduct = {
           imageUrl: [],
@@ -244,7 +241,6 @@ export default {
           imageUrl: [],
         };
       }
-      // 從新增、編輯、刪除重新取得初始化 tempProduct END
     },
     openModal(status, item) {
       if (status === 'new') {
@@ -253,7 +249,6 @@ export default {
         };
         $('#productModal').modal('show');
       } else if (status === 'edit') {
-        // 取得 API 資料，這樣才知道""編輯""是哪一筆
         this.isLoading = true;
         const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product/${item.id}`;
         this.axios.get(url).then((res) => {
@@ -262,7 +257,6 @@ export default {
           this.isLoading = false;
         });
       } else if (status === 'delete') {
-        // 取得 API 資料，這樣才知道""刪除""是哪一筆
         this.isLoading = true;
         const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product/${item.id}`;
         this.axios.get(url).then((res) => {

@@ -37,7 +37,6 @@
         </tr>
       </tbody>
     </table>
-
     <pagination :pagedata="pagination" @update="getCoupons"></pagination>
 
     <div id="couponModal" class="modal fade"
@@ -169,8 +168,8 @@ export default {
         enabled: false,
         deadline_at: 0,
       },
-      coupon_date: '', // 暫存優惠券到期日 >> deadline_at
-      coupon_time: '', // 暫存優惠券到期時間 >> deadline_at
+      coupon_date: '',
+      coupon_time: '',
       isLoading: false,
     };
   },
@@ -184,7 +183,7 @@ export default {
       const api = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupons?page=${num}`;
       this.axios.get(api).then((res) => {
         this.coupons = res.data.data;
-        this.pagination = res.data.meta.pagination; // 分頁的資料傳遞會用到
+        this.pagination = res.data.meta.pagination;
         this.isLoading = false;
       });
 
@@ -199,7 +198,6 @@ export default {
         this.coupon_date = '';
         this.coupon_time = '';
       } else {
-        // 新增資料、刪除資料的狀況
         this.tempCoupons = {
           title: '',
           code: '',
@@ -222,7 +220,6 @@ export default {
         };
         $('#couponModal').modal('show');
       } else if (status === 'edit') {
-        // 取得 API 資料，這樣才知道""編輯""是哪一筆
         this.isLoading = true;
         const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupon/${item.id}`;
         this.axios.get(url).then((res) => {
@@ -234,7 +231,6 @@ export default {
           this.isLoading = false;
         });
       } else if (status === 'delete') {
-        // 取得 API 資料，這樣才知道""刪除""是哪一筆
         this.isLoading = true;
         const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}
         /admin/ec/coupon/${item.id}`;

@@ -7,14 +7,10 @@
         </div>
       </div>
     </loading>
-
     <navbar></navbar>
-
     <section class="section">
       <div class="cart-page">
         <div class="container">
-
-          <!-- 流程部分 -->
           <ul class="shop-step">
             <li class="shop-step__list complete">
               <div class="shop-step__num">1</div>
@@ -29,19 +25,15 @@
               <div>完成</div>
             </li>
           </ul>
-          <!-- 流程部分 END -->
-
           <div class="cart-title">
             <h2 style="">付款頁</h2>
           </div>
-
-          <!-- 訂單內容 -->
           <ul class="cart-info">
             <li class="cart-info__list"
             v-for="item in order.products"
             :key="item.product.description">
               <div class="cart-info__pic">
-                <img :src="item.product.imageUrl[0]" alt="">
+                <img :src="item.product.imageUrl[0]" :alt="item.product.title">
               </div>
               <div class="cart-info__con">
                 <h4 class="cart-info__title">{{ item.product.title }}</h4>
@@ -55,8 +47,6 @@
               </div>
             </li>
           </ul>
-          <!-- 訂單內容 END -->
-
           <div class="row justify-content-end">
             <div class="col-md-4 cart-footer__total">
               <div class="cart-footer__total--item mt-2">
@@ -66,7 +56,6 @@
             </div>
           </div>
 
-          <!-- 購買者內容 -->
           <div class="cart-order">
             <h3 class="text-left">訂購人資料</h3>
             <ul class="cart-order__list" v-if="order.user">
@@ -121,7 +110,7 @@ export default {
     };
   },
   created() {
-    this.orderId = this.$route.params.orderId; // 取上方網址參數 (id)
+    this.orderId = this.$route.params.orderId;
     if (this.orderId) {
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders/${this.orderId}`;

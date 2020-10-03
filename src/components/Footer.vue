@@ -6,12 +6,11 @@
           <p class="mb-0 text-light">Copyright © 2020
             <span class="font-ubuntu">FitSpace</span>
             All Rights Reserved. | 僅個人學習，無任何商業用途
-            <router-link to="/admin/products"
+            <router-link to="/login"
               class="btn btn-sm btn-outline-light ml-2">管理者</router-link>
           </p>
         </div>
       </div>
-      <!-- <router-link to="/login" class="nav-item nav-link mr-4 text-white">登入</router-link> -->
     </div>
   </div>
 </template>

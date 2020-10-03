@@ -3,7 +3,6 @@
     <router-link to="/" class="navbar-brand logo">
       FitSpace
     </router-link>
-    <!-- navbar   bg-dark flex-md-nowrap  navbar-expand  -->
 
     <button class="navbar-toggler" type="button"
     data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -16,11 +15,9 @@
           課程列表
         </router-link>
         <router-link to="/cart" class="nav-item nav-link">
-          <!-- 購物車 -->
           <i class="fas fa-shopping-cart"></i>
           <span class="badge badge-light">{{ carts.length }}</span>
         </router-link>
-
       </div>
     </div>
   </nav>
@@ -31,7 +28,6 @@ export default {
   data() {
     return {
       carts: [],
-      // cartNum: 0,
     };
   },
   created() {
@@ -49,7 +45,7 @@ export default {
           this.carts = res.data.data;
         })
         .catch(() => {
-          // console.log(error.response.data.errors);
+          this.carts = 0;
         });
     },
   },

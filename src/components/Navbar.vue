@@ -11,6 +11,9 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
+        <router-link to="/about" class="nav-item nav-link">
+          關於我們
+        </router-link>
         <router-link to="/products" class="nav-item nav-link">
           課程列表
         </router-link>

@@ -12,7 +12,7 @@
       <div class="position-absolute banner-prodbg"></div>
       <div class="container d-flex flex-column banner-body banner-body-prod">
         <div class="row justify-content-center my-auto">
-          <div class="col-md-6 banner-textarea wow animate__fadeInDown" data-wow-duration="3s">
+          <div class="col-md-6 banner-textarea wow animate__fadeInDown" data-wow-duration="1s">
             <h3 class="banner-textarea__title">課程列表</h3>
           </div>
         </div>
@@ -20,6 +20,11 @@
     </div>
 
     <div class="container prod">
+      <div>
+        賀網站開幕，所有課程售價再8折，
+        再購物車頁面輸入折扣碼: FitSpacegogo8...
+      </div>
+
       <ul class="list-unstyled prod-filter">
         <li class="prod-filter__list">
           <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"

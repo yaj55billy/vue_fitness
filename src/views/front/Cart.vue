@@ -86,25 +86,34 @@
             <div class="row cart-footer">
               <div class="col-md-8 cart-footer__coupon">
                 <div class="input-group">
-                  <input type="text"
-                        class="form-control rounded-0 border-bottom
-                  border-top-0 border-left-0 border-right-0 shadow-none" placeholder="折價券">
+                  <input
+                  type="text"
+                  class="form-control rounded-0 border-bottom
+                  border-top-0 border-left-0 border-right-0 shadow-none"
+                  placeholder="折價券"
+                  v-model="discount.code">
 
                   <div class="input-group-append">
                     <button class="btn btn-outline-dark border-bottom
                     border-top-0 border-left-0 border-right-0 rounded-0"
-                    type="button" id="button-addon2"><i class="fas fa-paper-plane"></i></button>
+                    type="button" id="button-discount" @click="classDiscount()">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
                   </div>
                 </div>
               </div>
               <div class="col-md-4 cart-footer__total">
                 <div class="cart-footer__total--item">
                   <p class="mb-0">小計</p>
-                  <p class="mb-0">$ {{ cartTotal | toThousands }}</p>
+                  <p class="mb-0">$ {{ cartPriceTemp | toThousands }}</p>
+                </div>
+                <div class="cart-footer__total--item">
+                  <p class="mb-0">折扣</p>
+                  <p class="mb-0">$ {{ cartPriceDiscount | toThousands }}</p>
                 </div>
                 <div class="cart-footer__total--item mt-2">
                   <p class="mb-0 h4 font-weight-bold">總計</p>
-                  <p class="mb-0 h4 font-weight-bold">$ {{ cartTotal | toThousands }}</p>
+                  <p class="mb-0 h4 font-weight-bold">$ {{ cartPriceTotal | toThousands }}</p>
                 </div>
               </div>
             </div>
@@ -195,9 +204,14 @@ export default {
   data() {
     return {
       carts: [],
-      cartTotal: 0,
+      cartPriceTemp: 0,
+      cartPriceTotal: 0,
+      cartPriceDiscount: 0,
       cartsEmpty: false,
       isLoading: false,
+      discount: {
+        code: '',
+      },
       formdata: {
         name: '',
         email: '',
@@ -212,6 +226,20 @@ export default {
     this.getCart();
   },
   methods: {
+    classDiscount() {
+      this.isLoading = true;
+      const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/coupon/search`;
+      this.axios.post(url, this.discount)
+        .then((res) => {
+          this.$bus.$emit('notice-user', '成功折扣8折');
+          console.log(res.data.data.percent);
+          this.updateTotal(res.data.data.percent / 100);
+          this.isLoading = false;
+        }).catch(() => {
+          this.$bus.$emit('notice-user', '折扣碼錯誤，請再檢查看看是否輸入錯誤');
+          this.isLoading = false;
+        });
+    },
     getCart() {
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`;
@@ -223,16 +251,20 @@ export default {
           } else {
             this.carts = res.data.data;
             this.updateTotal();
+            this.classDiscount();
             this.$bus.$emit('cart-num', '');
             this.isLoading = false;
           }
         });
     },
-    updateTotal() {
-      this.cartTotal = 0; // 歸零，不然計算會有累加狀況。
+    updateTotal(percent = 1) {
+      this.cartPriceTemp = 0; // 歸零，不然計算會有累加狀況。
       this.carts.forEach((item) => {
-        this.cartTotal += item.product.price * item.quantity;
+        this.cartPriceTemp += item.product.price * item.quantity;
       });
+
+      this.cartPriceTotal = this.cartPriceTemp * percent;
+      this.cartPriceDiscount = this.cartPriceTemp * (1 - percent);
     },
     deleteCartItem(id) {
       this.isLoading = true;

@@ -20,9 +20,12 @@
     </div>
 
     <div class="container prod">
-      <div>
-        賀網站開幕，所有課程售價再8折，
-        再購物車頁面輸入折扣碼: FitSpacegogo8...
+      <div class="prod-congratulate">
+        <i class="fas fa-bullhorn prod-congratulate__icon"></i>
+        <p class="prod-congratulate__text">
+          慶祝 <span class="font-ubuntu">FitSpace</span>
+          網站開幕，在 12/31 前，結帳輸入 fitspacegogo8 就享有課程售價 8 折優惠。
+        </p>
       </div>
 
       <ul class="list-unstyled prod-filter">
@@ -65,11 +68,10 @@
             <router-link :to="`/product/${item.id}`" class="prod-link"></router-link>
           </div>
         </div>
-
       </div>
-      <nav class="d-flex justify-content-center">
+      <!-- <nav class="d-flex justify-content-center">
         <pagination :pagedata="pagination" @update="getProducts"></pagination>
-      </nav>
+      </nav> -->
     </div>
     <pagebottom></pagebottom>
   </div>
@@ -79,21 +81,21 @@
 // /* global $ */
 
 import navbar from '@/components/Navbar.vue';
-import pagination from '@/components/Pagination.vue';
+// import pagination from '@/components/Pagination.vue';
 import pagebottom from '@/components/Footer.vue';
 
 export default {
   components: {
     navbar,
     pagebottom,
-    pagination,
+    // pagination,
   },
   data() {
     return {
       products: [],
       nowProducts: [],
       nowCategory: '', // 取得現在分類 +active 判斷用
-      pagination: {},
+      // pagination: {},
       isLoading: false,
     };
   },
@@ -115,7 +117,7 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products?page=${num}`;
       this.axios.get(url).then((res) => {
         this.products = res.data.data;
-        this.pagination = res.data.meta.pagination;
+        // this.pagination = res.data.meta.pagination;
         this.nowProducts = res.data.data;
         this.isLoading = false;
       });

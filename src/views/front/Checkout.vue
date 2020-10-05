@@ -50,7 +50,7 @@
           <div class="row justify-content-end">
             <div class="col-md-4 cart-footer__total">
               <div class="cart-footer__total--item mt-2">
-                <p class="mb-0 h4 font-weight-bold">總計</p>
+                <p class="mb-0 h4 font-weight-bold">總計<span class="h6">(已折扣)</span></p>
                 <p class="mb-0 h4 font-weight-bold">$ {{ order.amount | toThousands }}</p>
               </div>
             </div>

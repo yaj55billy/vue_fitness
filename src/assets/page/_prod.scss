@@ -4,8 +4,37 @@
   margin: 60px auto;
   transition: all 0.5s;
 
+  &-congratulate{
+    background-color: lighten(#fdc23e,12%);
+    padding: 15px;
+    font-size: 0;
+    &__icon,&__text{
+      display: inline-block;
+      vertical-align: top;
+    }
+    &__icon{
+      font-size: 36px;
+      width: 36px;
+    }
+    &__text{
+      font-size: 20px;
+      font-weight: 500;
+      margin: 3px 0 0 10px;
+      margin-bottom: 0;
+      text-align: center;
+      @media screen and (max-width: 991px) {
+        margin: 3px 0 0 0px;
+      }
+      @media screen and (max-width: 568px) {
+        font-size: 16px;
+        line-height: 1.4;
+      }
+    }
+  }
+
   &-filter{ // 上方分類
     font-size: 0;
+    margin-top: 15px;
     margin-bottom: 0;
     text-align: center;
     @media screen and (max-width: 767px) {

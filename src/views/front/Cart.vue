@@ -105,15 +105,19 @@
               <div class="col-md-4 cart-footer__total">
                 <div class="cart-footer__total--item">
                   <p class="mb-0">小計</p>
-                  <p class="mb-0">$ {{ cartPriceTemp | toThousands }}</p>
+                  <p class="mb-0">$ {{ cartPrice| toThousands }}</p>
                 </div>
                 <div class="cart-footer__total--item">
                   <p class="mb-0">折扣</p>
-                  <p class="mb-0">$ {{ cartPriceDiscount | toThousands }}</p>
+                  <p class="mb-0">
+                    $ {{ Math.round(cartPrice * ((100 - couponPercent) / 100)) | toThousands }}
+                  </p>
                 </div>
                 <div class="cart-footer__total--item mt-2">
                   <p class="mb-0 h4 font-weight-bold">總計</p>
-                  <p class="mb-0 h4 font-weight-bold">$ {{ cartPriceTotal | toThousands }}</p>
+                  <p class="mb-0 h4 font-weight-bold">
+                    $ {{ cartPrice * (couponPercent / 100) | toThousands }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -204,11 +208,11 @@ export default {
   data() {
     return {
       carts: [],
-      cartPriceTemp: 0,
-      cartPriceTotal: 0,
-      cartPriceDiscount: 0,
+      cartPrice: 0,
       cartsEmpty: false,
       isLoading: false,
+      coupon: {},
+      couponPercent: 100,
       discount: {
         code: '',
       },
@@ -231,12 +235,14 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/coupon/search`;
       this.axios.post(url, this.discount)
         .then((res) => {
-          this.$bus.$emit('notice-user', '成功折扣8折');
-          console.log(res.data.data.percent);
-          this.updateTotal(res.data.data.percent / 100);
+          this.$bus.$emit('notice-user', '恭喜已為您折扣課程費用');
+          this.couponPercent = res.data.data.percent;
+          this.coupon = res.data.data;
           this.isLoading = false;
         }).catch(() => {
-          this.$bus.$emit('notice-user', '折扣碼錯誤，請再檢查看看是否輸入錯誤');
+          this.$bus.$emit('notice-user', '折扣碼錯誤，請再確認看看是否輸入錯誤');
+          this.couponPercent = 100;
+          this.getCart();
           this.isLoading = false;
         });
     },
@@ -251,20 +257,16 @@ export default {
           } else {
             this.carts = res.data.data;
             this.updateTotal();
-            this.classDiscount();
             this.$bus.$emit('cart-num', '');
             this.isLoading = false;
           }
         });
     },
-    updateTotal(percent = 1) {
-      this.cartPriceTemp = 0; // 歸零，不然計算會有累加狀況。
+    updateTotal() {
+      this.cartPrice = 0; // 歸零，不然計算會有累加狀況。
       this.carts.forEach((item) => {
-        this.cartPriceTemp += item.product.price * item.quantity;
+        this.cartPrice += item.product.price * item.quantity;
       });
-
-      this.cartPriceTotal = this.cartPriceTemp * percent;
-      this.cartPriceDiscount = this.cartPriceTemp * (1 - percent);
     },
     deleteCartItem(id) {
       this.isLoading = true;
@@ -296,6 +298,9 @@ export default {
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders`;
       const order = { ...this.formdata };
+      if (this.coupon.enabled) {
+        order.coupon = this.coupon.code;
+      }
       this.axios.post(url, order)
         .then((res) => {
           if (res.data.data.id) {

@@ -1,5 +1,12 @@
 <template>
   <div class="about">
+    <loading :active.sync="isLoading">
+      <div class="loadingio-spinner-ball-h1u60i2wsu">
+        <div class="ldio-ivekc1fyg2">
+          <div></div>
+        </div>
+      </div>
+    </loading>
     <navbar></navbar>
     <div class="position-relative banner">
       <div class="position-absolute banner-prodbg"></div>
@@ -32,13 +39,6 @@
               所以 <span class="font-ubuntu">FitSpace</span>
               希望藉由這個運動空間，盡力讓大家了解正確的運動健身以及飲食觀念，並期望能幫助更多的人。
             </p>
-            <h4 class="mt-4">場館介紹</h4>
-            <p class="text-muted">
-              場館目前只開放給購課學員使用，館內設施分為自由重量區、器械啞鈴區以及飛輪和瑜珈教室，滿足學員全方位的訓練需求。
-              <br>
-              初次購課時，不論學員所購買的課程類型，<span class="font-ubuntu">FitSpace</span>
-              都將免費贈送一堂身體分析課，在這堂課程中您將會更了解自己的身體狀況，我們也會提供給您一個訓練方向跟飲食建議。
-            </p>
           </div>
         </div>
       </div>
@@ -48,6 +48,58 @@
         <h2 class="home-title">
           聯絡我們
         </h2>
+        <div class="row">
+          <div class="col-md-4">
+            FitSpace
+          </div>
+          <div class="col-md-8 m-auto">
+            <validation-observer v-slot="{ invalid }">
+              <form class="form mt-5" @submit.prevent="sendMail()">
+                <div class="form-group">
+                  <validation-provider rules="required" v-slot="{ errors, classes }">
+                    <label for="contac-tname" class="text-left w-100">姓名</label>
+                    <input id="contact-name" type="text" name="姓名"
+                    v-model="contactdata.name" class="form-control" :class="classes">
+                    <span class="invalid-feedback">{{ errors[0] }}</span>
+                  </validation-provider>
+                </div>
+
+                <div class="form-group">
+                  <validation-provider rules="required|email" v-slot="{ errors, classes }">
+                    <label for="contact-email" class="text-left w-100">Email</label>
+                    <input id="contact-email" type="email" name="信箱" v-model="contactdata.email"
+                    class="form-control" :class="classes">
+                    <span class="invalid-feedback">{{ errors[0] }}</span>
+                  </validation-provider>
+                </div>
+
+                <div class="form-group">
+                  <validation-provider rules="required|min:8" v-slot="{ errors, classes }">
+                    <label for="contact-tel" class="text-left w-100">電話</label>
+                    <input id="contact-tel" type="tel" name="電話" v-model="contactdata.tel"
+                    class="form-control" :class="classes">
+                    <span class="invalid-feedback">{{ errors[0] }}</span>
+                  </validation-provider>
+                </div>
+
+                <div class="form-group">
+                  <validation-provider rules="required" v-slot="{ errors, classes }">
+                    <label for="contact-message" class="text-left w-100">想跟我們說些什麼?</label>
+                    <textarea name="留言" id="" cols="30" rows="3"
+                    class="form-control" v-model="contactdata.message" :class="classes">
+                    </textarea>
+                    <span class="invalid-feedback">{{ errors[0] }}</span>
+                  </validation-provider>
+                </div>
+
+                <div class="btn-area right">
+                  <button type="submit"
+                  class="btn btn-primary rounded-pill btn-xl" :disabled="invalid">留言</button>
+                </div>
+              </form>
+            </validation-observer>
+          </div>
+        </div>
       </div>
     </div>
     <pagebottom></pagebottom>
@@ -66,7 +118,23 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
+      contactdata: {
+        name: '',
+        email: '',
+        tel: '',
+        message: '',
+      },
     };
+  },
+  methods: {
+    sendMail() {
+      this.isLoading = true;
+      this.$bus.$emit('notice-user', '成功寄出，我們將會在三個工作天內與您聯繫。');
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 2000);
+    },
   },
 };
 </script>

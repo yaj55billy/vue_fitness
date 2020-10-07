@@ -14,6 +14,9 @@
         <router-link to="/about" class="nav-item nav-link">
           關於我們
         </router-link>
+        <router-link to="/qa" class="nav-item nav-link">
+          常見問題
+        </router-link>
         <router-link to="/products" class="nav-item nav-link">
           課程列表
         </router-link>

@@ -36,4 +36,30 @@
       }
     }
   }
+
+  &-intro{
+    &__section{
+      &:last-child{
+        margin-top: 35px;
+        @media screen and (max-width: 767px) {
+          margin-top: 0;
+        }
+      }
+    }
+    &__con{
+      max-width: 45%;
+      @media screen and (max-width: 991px) {
+        max-width: 50%;
+      }
+      @media screen and (max-width: 767px) {
+        max-width: 100%;
+      }
+    }
+    &__text{
+      text-align: left;
+      @media screen and (max-width: 767px) {
+        margin-top: 15px;
+      }
+    }
+  }
 }

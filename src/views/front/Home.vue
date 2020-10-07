@@ -23,6 +23,66 @@
         </div>
       </div>
     </div>
+
+    <div class="home-intro mt-6 mb-6">
+      <div class="container">
+        <div class="home-intro__section">
+          <h2 class="home-title">
+            課程介紹
+          </h2>
+          <div class="row">
+            <div class="col-md-6">
+              <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/3ytBunIRdoAz3fj5pQHjXRks7kuYvdN9xEWs8djvoNuZ4aWCu4LaDhWvXgFtQtcVLuG06lUFY8GN8D0x2RbGbFXuhSlsHw2v1PC5xh7dfruIUpKwtg2n43Y3VvHY9UVK.jpg" alt="" class="img-fluid">
+            </div>
+            <div class="col-md-6 m-auto home-intro__con">
+              <p class="home-intro__text">
+                <span class="font-ubuntu">FitSpace</span> 的課程相當完善，除了課程本身之外，我們在課前也提供身體評估跟身體組成分析，
+                從課前的評估分析來建議學員在飲食、運動上要注意什麼，而在課程後也會持續追蹤學員的狀況，提供適當的協助。<br/>
+                而在課程本身，我們提供了肌力課程、力量訓練、瑜珈課程、筋膜放鬆、以及多功能訓練跟有氧燃脂，滿足學員上課全方位的訓練、運動需求。
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="home-intro__section">
+          <h2 class="home-title">
+            優質環境
+          </h2>
+          <div class="row flex-row-reverse justify-content-between mt-4">
+            <div class="col-md-6">
+              <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/eu6kMajvBAf3W9oF2JrRRkscOspho9jTJE6CAxI7WMyqr8qHsjuNPWclztO7VECD92grH2oL6HlP2ahFJibsT3JBWMw43mXHMlkE3S5bbbOy8Flk5hM5yxIXkll5Iury.jpg" alt="" class="img-fluid">
+            </div>
+            <div class="col-md-6 m-auto home-intro__con">
+              <p class="home-intro__text">
+                場館目前只開放給購課學員使用，館內設施分為自由重量區、多功能草皮區、器械啞鈴區
+                以及兩間飛輪教室和兩間瑜珈教室，雖然場館本身坪數不大，但經由嚴格的動線調整，學員在這邊運動並不會有壅塞感。<br/>
+                <span class="font-ubuntu">FitSpace</span> 的教練皆經過嚴格的篩選，運動方面的知識跟操作是相當足夠的，
+                另外我們也教育教練不得強迫推銷課程。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-primary home-location pt-4 pb-4">
+      <div class="container">
+        <h2 class="home-title">
+          場館位置
+        </h2>
+        <div class="row home-location__body">
+          <div class="col-md-12 m-auto">
+            <p class="home-location__info mb-0">
+              <i class="fas fa-phone"></i>02-3456-7890
+            </p>
+            <p class="home-location__info">
+              <i class="fas fa-map-marker-alt"></i>新北市土城區海山路18號 (土城海山捷運站3號出口步行約3分鐘)
+            </p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m19!1m8!1m3!1d1808.1884050541146!2d121.449207!3d24.987309!3m2!1i1024!2i768!4f13.1!4m8!3e0!4m0!4m5!1s0x346802ca53d3d8fd%3A0x60fb81099c3ac0f4!2zMjM25paw5YyX5biC5Zyf5Z-O5Y2A5rW35bGx6LevMTjomZ8!3m2!1d24.987433799999998!2d121.4489887!5e0!3m2!1szh-TW!2stw!4v1599851824240!5m2!1szh-TW!2stw" width="800" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="home-location__map"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="home-topic mt-6 mb-6">
       <div class="container">
         <h2 class="home-title">
@@ -106,26 +166,7 @@
       </div>
     </div>
 
-    <div class="bg-primary home-location pt-4 pb-4">
-      <div class="container">
-        <h2 class="home-title">
-          場館位置
-        </h2>
-        <div class="row home-location__body">
-          <div class="col-md-12 m-auto">
-            <p class="home-location__info mb-0">
-              <i class="fas fa-phone"></i>02-3456-7890
-            </p>
-            <p class="home-location__info">
-              <i class="fas fa-map-marker-alt"></i>新北市土城區海山路18號 (土城海山捷運站3號出口步行約3分鐘)
-            </p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m19!1m8!1m3!1d1808.1884050541146!2d121.449207!3d24.987309!3m2!1i1024!2i768!4f13.1!4m8!3e0!4m0!4m5!1s0x346802ca53d3d8fd%3A0x60fb81099c3ac0f4!2zMjM25paw5YyX5biC5Zyf5Z-O5Y2A5rW35bGx6LevMTjomZ8!3m2!1d24.987433799999998!2d121.4489887!5e0!3m2!1szh-TW!2stw!4v1599851824240!5m2!1szh-TW!2stw" width="800" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="home-location__map"></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mt-6 mb-6">
+    <!-- <div class="mt-6 mb-6">
       <h2 class="home-title">
         學員成效
       </h2>
@@ -168,7 +209,7 @@
           </a>
         </div>
       </div>
-    </div>
+    </div> -->
     <pagebottom></pagebottom>
   </div>
 </template>

@@ -72,10 +72,13 @@
         <div class="row home-location__body">
           <div class="col-md-12 m-auto">
             <p class="home-location__info mb-0">
-              <i class="fas fa-phone"></i>02-3456-7890
+              <i class="fas fa-phone"></i> 電話：02-3456-7890
+            </p>
+            <p class="home-location__info mb-0">
+              <i class="far fa-clock"></i> 營業時間：10:00 ~ 22:00
             </p>
             <p class="home-location__info">
-              <i class="fas fa-map-marker-alt"></i>新北市土城區海山路18號 (土城海山捷運站3號出口步行約3分鐘)
+              <i class="fas fa-map-marker-alt"></i> 地址：新北市土城區海山路18號 (土城海山捷運站3號出口步行約3分鐘)
             </p>
             <iframe src="https://www.google.com/maps/embed?pb=!1m19!1m8!1m3!1d1808.1884050541146!2d121.449207!3d24.987309!3m2!1i1024!2i768!4f13.1!4m8!3e0!4m0!4m5!1s0x346802ca53d3d8fd%3A0x60fb81099c3ac0f4!2zMjM25paw5YyX5biC5Zyf5Z-O5Y2A5rW35bGx6LevMTjomZ8!3m2!1d24.987433799999998!2d121.4489887!5e0!3m2!1szh-TW!2stw!4v1599851824240!5m2!1szh-TW!2stw" width="800" height="400" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="home-location__map"></iframe>
           </div>

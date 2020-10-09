@@ -131,6 +131,9 @@ export default {
           this.product = res.data.data;
           this.isLoading = false;
           this.getRelatedProducts();
+          if (this.product.category === '體驗課程') {
+            this.classMax = 1;
+          }
         }).catch((error) => {
           this.$bus.$emit('notice-user', error.response.data.errors[0]);
           this.isLoading = false;

@@ -1,12 +1,5 @@
 <template>
   <div class="about">
-    <loading :active.sync="isLoading">
-      <div class="loadingio-spinner-ball-h1u60i2wsu">
-        <div class="ldio-ivekc1fyg2">
-          <div></div>
-        </div>
-      </div>
-    </loading>
     <navbar></navbar>
     <div class="position-relative banner">
       <div class="position-absolute banner-prodbg"></div>
@@ -24,21 +17,102 @@
           常見問題
         </h2>
         <div class="row">
-          <div class="col-md-4">
-            <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/shcmC7WhOjZFX3wksjAU5jqI1fYxntSCzcoEolKucbSd6AXbFhkUsoTjQfeHo2LPrcF1MXz1LscEfGKKpIyg5JFf7WWdBGolySlCPZ6VtstexHFyw5OBiG3mb6RMAUup.jpg" alt="教練" title="Tony 教練" class="img-fluid wow animate__fadeIn" data-wow-duration=".5s">
-          </div>
-          <div class="col-md-8 m-auto text-left wow animate__fadeIn" data-wow-duration=".5s">
-            <h4 class="mt-4">關於 <span class="font-ubuntu">FitSpace</span></h4>
-            <p class="text-muted">
-              現在的社會相當方便，我們幾乎可以隔著螢幕就完成許多事情，
-              例如: 使用手機點個幾下就能對外送平台訂購我們想吃的食物；
-              而這麼便利的 3C 社會也帶來一些副作用，大家的活動量越來越少、飲食卻越來越精緻，
-              加上資訊爆炸帶來許多不太正確的運動、飲食觀念，這些副作用直接或間接的影響到了大家的健康，
-              而且影響年齡有越來越年輕化的趨勢。
-              <br>
-              所以 <span class="font-ubuntu">FitSpace</span>
-              希望藉由這個運動空間，盡力讓大家了解正確的運動健身以及飲食觀念，並期望能幫助更多的人。
-            </p>
+          <div class="col-md-10 m-auto">
+            <div class="accordion" id="accordionExample">
+
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link" type="button"
+                    data-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                      Que: 上課後發現自己不太能適應的話，是否能退課呢?
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseOne" class="collapse show"
+                aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    Ans: 基本上是可以的，但會先了解是什麼原因或狀況，從狀況再跟學員討論是否要換到其他老師或其他課程。
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="headingTwo">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link collapsed"
+                    type="button" data-toggle="collapse"
+                    data-target="#collapseTwo"
+                    aria-expanded="false" aria-controls="collapseTwo">
+                      Que: 如果臨時有事情或身體不舒服是可以請假的嗎?
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseTwo" class="collapse"
+                aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="card-body">
+                    Ans: 可以的，透過電話(02-3456-7890)聯繫我們，我們將會替你安排其他課程時間。
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link collapsed"
+                    type="button" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="false" aria-controls="collapseThree">
+                      Que: 新手想運動，但不太曉得從什麼課程開始，有什麼建議嗎?
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseThree" class="collapse"
+                aria-labelledby="headingThree" data-parent="#accordionExample">
+                  <div class="card-body">
+                    Ans: 可以先報名體驗課程來參觀體驗。基本上我們的課程除了"進階瑜珈"、"TRX" 會比較不建議新手報名外，
+                    其他課程都會應學員需求而做調整。 如果想要有趣一些的課程來維持運動習慣，可以先嘗試看看有氧課程、多功能訓練課程 :)
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="headingFour">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link collapsed"
+                    type="button" data-toggle="collapse" data-target="#collapseFour"
+                    aria-expanded="false" aria-controls="collapseFour">
+                      Que: 問題四
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseFour" class="collapse"
+                aria-labelledby="headingFour" data-parent="#accordionExample">
+                  <div class="card-body">
+                    Ans: 回答四
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="headingFive">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link collapsed"
+                    type="button" data-toggle="collapse" data-target="#collapseFive"
+                    aria-expanded="false" aria-controls="collapseFive">
+                      Que: 問題五
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseFive" class="collapse"
+                aria-labelledby="headingFive" data-parent="#accordionExample">
+                  <div class="card-body">
+                    Ans: 回答五
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>

@@ -68,6 +68,7 @@
                     <button
                       type="button"
                       class="btn-cart"
+                      :disabled="item.product.category === '體驗課程'"
                       @click="item.quantity ++;
                         editCartItemNum(item.product.id, item.quantity)">
                       +
@@ -100,6 +101,13 @@
                       <i class="fas fa-paper-plane"></i>
                     </button>
                   </div>
+                </div>
+                <div class="congratulate">
+                  <i class="fas fa-bullhorn congratulate-icon"></i>
+                  <p class="congratulate-text">
+                    慶祝 <span class="font-ubuntu">FitSpace</span>
+                    網站開幕，在 12/31 前，結帳輸入 fitspacegogo8 就享有課程售價 8 折優惠。
+                  </p>
                 </div>
               </div>
               <div class="col-md-4 cart-footer__total">

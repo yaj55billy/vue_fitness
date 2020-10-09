@@ -168,51 +168,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="mt-6 mb-6">
-      <h2 class="home-title">
-        學員成效
-      </h2>
-      <div class="container">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"
-        style="background-color: #ccc;">
-          <div class="carousel-inner">
-            <div class="carousel-item active" v-for="item in studentMessage.slice(0,1)"
-            :key="item.id">
-              <div class="row justify-content-center py-7">
-                <div class="col-md-6 text-center">
-                  <h3>{{ item.name }}</h3>
-                  <p class="">
-                    {{ item.experience }}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item" v-for="item in studentMessage.slice(1)"
-            :key="item.id">
-              <div class="row justify-content-center py-7">
-                <div class="col-md-6 text-center">
-                  <h3>{{ item.name }}</h3>
-                  <p>
-                    {{ item.experience }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <a class="carousel-control-prev"
-          href="#carouselExampleControls"  role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next"
-          href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-    </div> -->
     <pagebottom></pagebottom>
   </div>
 </template>
@@ -229,43 +184,6 @@ export default {
   },
   data() {
     return {
-      studentMessage: [
-        {
-          id: `s1${Math.random()}`,
-          name: '小芳',
-          experience: '真的很推薦 FitSpace，幾個月前購買了 Mike 教練的健身綜合課程，除了健身相關的知識之外，Mike 教練也會提到飲食的重要性。運動加上飲食的調整，精神真的比以前好很多!',
-        },
-        {
-          id: `s2${Math.random()}`,
-          name: 'Tony Chen',
-          experience: '推薦瑜珈課程，緊繃上班族的福音!!!',
-        },
-        {
-          id: `s3${Math.random()}`,
-          name: '大明',
-          experience: '筋膜放鬆推推，原本自己是一個只注重運動而不在意身體活動度、柔軟度的人，沒想到放鬆後反而可以讓運動表現好很多。',
-        },
-        {
-          id: `s4${Math.random()}`,
-          name: 'Mei',
-          experience: '喜歡飛輪課，享受爆汗的暢快感~~',
-        },
-        {
-          id: `s5${Math.random()}`,
-          name: '建智',
-          experience: '感謝 Mike 教練，現在力量訓練時，更能意識到呼吸的方式。',
-        },
-        {
-          id: `s6${Math.random()}`,
-          name: '德',
-          experience: '感謝 FitSpace 提供了這麼好的運動環境，還在練習跟適應 TRX 中。',
-        },
-        {
-          id: `s7${Math.random()}`,
-          name: '小瑜',
-          experience: '教練都會一步一步循序漸進，因應每個學員的狀況調整，而且很有耐心的指導我們~~ ',
-        },
-      ],
     };
   },
 };

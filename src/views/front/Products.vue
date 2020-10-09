@@ -20,9 +20,10 @@
     </div>
 
     <div class="container prod">
-      <div class="prod-congratulate">
-        <i class="fas fa-bullhorn prod-congratulate__icon"></i>
-        <p class="prod-congratulate__text">
+
+      <div class="congratulate">
+        <i class="fas fa-bullhorn congratulate-icon"></i>
+        <p class="congratulate-text">
           慶祝 <span class="font-ubuntu">FitSpace</span>
           網站開幕，在 12/31 前，結帳輸入 fitspacegogo8 就享有課程售價 8 折優惠。
         </p>

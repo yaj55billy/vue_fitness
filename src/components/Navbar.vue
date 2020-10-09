@@ -14,11 +14,14 @@
         <router-link to="/about" class="nav-item nav-link">
           關於我們
         </router-link>
+        <router-link to="/products" class="nav-item nav-link">
+          課程列表
+        </router-link>
         <router-link to="/qa" class="nav-item nav-link">
           常見問題
         </router-link>
-        <router-link to="/products" class="nav-item nav-link">
-          課程列表
+        <router-link to="/contact" class="nav-item nav-link">
+          聯絡我們
         </router-link>
         <router-link to="/cart" class="nav-item nav-link">
           <i class="fas fa-shopping-cart"></i>

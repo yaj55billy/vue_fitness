@@ -25,7 +25,6 @@
               <div>完成</div>
             </li>
           </ul>
-
           <div class="cart-title">
             <h2 style="">訂單</h2>
             <router-link to="/products" class="btn btn-outline-primary btn-md rounded-pill">
@@ -41,7 +40,6 @@
               </h2>
             </div>
           </div>
-
           <div v-else>
             <ul class="cart-info">
               <li class="cart-info__list" v-for="item in carts" :key="item.product.id + 1">
@@ -50,7 +48,6 @@
                 </div>
                 <div class="cart-info__con">
                   <h4 class="cart-info__title">{{ item.product.title }}</h4>
-
                   <div class="cart-info__count">
                     <button
                       type="button"
@@ -83,7 +80,6 @@
                 </div>
               </li>
             </ul>
-
             <div class="row cart-footer">
               <div class="col-md-8 cart-footer__coupon">
                 <div class="input-group">
@@ -93,7 +89,6 @@
                   border-top-0 border-left-0 border-right-0 shadow-none"
                   placeholder="折價券"
                   v-model="discount.code">
-
                   <div class="input-group-append">
                     <button class="btn btn-outline-dark border-bottom
                     border-top-0 border-left-0 border-right-0 rounded-0"
@@ -129,7 +124,6 @@
                 </div>
               </div>
             </div>
-
             <validation-observer v-slot="{ invalid }">
               <form class="form mt-5" @submit.prevent="createOrder()">
                 <h3 class="text-left">填寫資料</h3>
@@ -141,7 +135,6 @@
                     <span class="invalid-feedback">{{ errors[0] }}</span>
                   </validation-provider>
                 </div>
-
                 <div class="form-group">
                   <validation-provider rules="required|email" v-slot="{ errors, classes }">
                     <label for="email" class="text-left w-100">Email</label>
@@ -150,7 +143,6 @@
                     <span class="invalid-feedback">{{ errors[0] }}</span>
                   </validation-provider>
                 </div>
-
                 <div class="form-group">
                   <validation-provider rules="required|min:8" v-slot="{ errors, classes }">
                     <label for="tel" class="text-left w-100">電話</label>
@@ -159,7 +151,6 @@
                     <span class="invalid-feedback">{{ errors[0] }}</span>
                   </validation-provider>
                 </div>
-
                 <div class="form-group">
                   <validation-provider rules="required" v-slot="{ errors, classes }">
                     <label for="addr" class="text-left w-100">地址</label>
@@ -168,7 +159,6 @@
                     <span class="invalid-feedback">{{ errors[0] }}</span>
                   </validation-provider>
                 </div>
-
                 <div class="form-group">
                   <label for="pay-method" class="text-left w-100">購買方式</label>
                   <select name="付款方式" id="pay-method" class="form-control"
@@ -182,7 +172,6 @@
                     <option value="GooglePay">GooglePay</option>
                   </select>
                 </div>
-
                 <div class="form-group">
                   <label for="message" class="text-left w-100">留言</label>
                   <textarea name="message" id="" cols="30" rows="3"
@@ -198,20 +187,19 @@
         </div>
       </div>
     </section>
-
-    <pagebottom></pagebottom>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 
 import navbar from '@/components/Navbar.vue';
-import pagebottom from '@/components/Footer.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   components: {
     navbar,
-    pagebottom,
+    Footer,
   },
   data() {
     return {

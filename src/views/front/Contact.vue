@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div>
     <loading :active.sync="isLoading">
       <div class="loadingio-spinner-ball-h1u60i2wsu">
         <div class="ldio-ivekc1fyg2">
@@ -52,7 +52,6 @@
                     <span class="invalid-feedback">{{ errors[0] }}</span>
                   </validation-provider>
                 </div>
-
                 <div class="form-group">
                   <validation-provider rules="required|email" v-slot="{ errors, classes }">
                     <label for="contact-email" class="text-left w-100">Email</label>
@@ -61,7 +60,6 @@
                     <span class="invalid-feedback">{{ errors[0] }}</span>
                   </validation-provider>
                 </div>
-
                 <div class="form-group">
                   <validation-provider rules="required|min:8" v-slot="{ errors, classes }">
                     <label for="contact-tel" class="text-left w-100">電話</label>
@@ -70,7 +68,6 @@
                     <span class="invalid-feedback">{{ errors[0] }}</span>
                   </validation-provider>
                 </div>
-
                 <div class="form-group">
                   <validation-provider rules="required" v-slot="{ errors, classes }">
                     <label for="contact-message" class="text-left w-100">留言</label>
@@ -80,7 +77,6 @@
                     <span class="invalid-feedback">{{ errors[0] }}</span>
                   </validation-provider>
                 </div>
-
                 <div class="btn-area right">
                   <button type="submit"
                   class="btn btn-primary rounded-pill btn-xl" :disabled="invalid">留言</button>
@@ -91,19 +87,18 @@
         </div>
       </div>
     </div>
-    <pagebottom></pagebottom>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import navbar from '@/components/Navbar.vue';
-import pagebottom from '@/components/Footer.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
-  name: 'Contact',
   components: {
     navbar,
-    pagebottom,
+    Footer,
   },
   data() {
     return {

@@ -39,7 +39,6 @@
         </tr>
       </tbody>
     </table>
-
     <pagination :pagedata="pagination" @update="getProducts"></pagination>
 
     <div id="productModal" class="modal fade"
@@ -59,21 +58,9 @@
           <div class="modal-body text-left">
             <div class="row">
               <div class="col-sm-4">
-                <div class="form-group">
-                  <label for="imageUrl_0">輸入圖片網址</label>
-                  <input id="imageUrl_0" v-model="tempProduct.imageUrl[0]"
-                  type="text" class="form-control"
-                    placeholder="請輸入圖片連結">
-                </div>
-                <div class="form-group">
-                  <label for="imageUrl_1">輸入圖片網址</label>
-                  <input id="imageUrl_1" v-model="tempProduct.imageUrl[1]"
-                  type="text" class="form-control"
-                    placeholder="請輸入圖片連結">
-                </div>
-                <div class="form-group">
-                  <label for="imageUrl_2">輸入圖片網址</label>
-                  <input id="imageUrl_2" v-model="tempProduct.imageUrl[2]"
+                <div v-for="i in 3" :key="i + 'img'" class="form-group">
+                  <label :for="'imageUrl_' + i">輸入圖片網址</label>
+                  <input :id="'imageUrl_' + i" v-model="tempProduct.imageUrl[i]"
                   type="text" class="form-control"
                     placeholder="請輸入圖片連結">
                 </div>
@@ -165,7 +152,6 @@
         </div>
       </div>
     </div>
-
     <div id="delProductModal" class="modal fade"
       tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
@@ -218,7 +204,6 @@ export default {
       isLoading: false,
     };
   },
-  props: ['token'],
   created() {
     this.getProducts();
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <loading :active.sync="isLoading">
       <div class="loadingio-spinner-ball-h1u60i2wsu">
         <div class="ldio-ivekc1fyg2">
@@ -18,9 +18,7 @@
         </div>
       </div>
     </div>
-
     <div class="container prod">
-
       <div class="congratulate">
         <i class="fas fa-bullhorn congratulate-icon"></i>
         <p class="congratulate-text">
@@ -28,7 +26,6 @@
           網站開幕，在 12/31 前，結帳輸入 fitspacegogo8 就享有課程售價 8 折優惠。
         </p>
       </div>
-
       <ul class="list-unstyled prod-filter">
         <li class="prod-filter__list">
           <a href="#" class="btn btn-outline-primary btn-sm rounded-pill"
@@ -43,7 +40,6 @@
           @click.prevent="productHandler(item)">{{ item }}</a>
         </li>
       </ul>
-
       <div class="row mt-4">
         <div class="col-lg-4 col-md-6"
          v-for="item in nowProducts" :key="item.id">
@@ -70,33 +66,26 @@
           </div>
         </div>
       </div>
-      <!-- <nav class="d-flex justify-content-center">
-        <pagination :pagedata="pagination" @update="getProducts"></pagination>
-      </nav> -->
     </div>
-    <pagebottom></pagebottom>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
-// /* global $ */
 
 import navbar from '@/components/Navbar.vue';
-// import pagination from '@/components/Pagination.vue';
-import pagebottom from '@/components/Footer.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   components: {
     navbar,
-    pagebottom,
-    // pagination,
+    Footer,
   },
   data() {
     return {
       products: [],
       nowProducts: [],
-      nowCategory: '', // 取得現在分類 +active 判斷用
-      // pagination: {},
+      nowCategory: '',
       isLoading: false,
     };
   },
@@ -105,11 +94,9 @@ export default {
     this.productHandler();
   },
   computed: {
-    filterCategory() {
-      return this.products.map((item) => item.category);
-    },
     filterNotRepeat() {
-      return this.filterCategory.filter((element, index, arr) => arr.indexOf(element) === index);
+      return this.products.map((item) => item.category)
+        .filter((element, index, arr) => arr.indexOf(element) === index);
     },
   },
   methods: {
@@ -118,7 +105,6 @@ export default {
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products?page=${num}`;
       this.axios.get(url).then((res) => {
         this.products = res.data.data;
-        // this.pagination = res.data.meta.pagination;
         this.nowProducts = res.data.data;
         this.isLoading = false;
       });
@@ -146,7 +132,7 @@ export default {
         this.nowCategory = catchVal;
         this.nowProducts = this.products;
       } else {
-        this.products.map((item) => {
+        this.products.forEach((item) => {
           if (item.category === catchVal) {
             this.nowCategory = item.category;
             this.nowProducts.push(item);

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <loading :active.sync="isLoading">
       <div class="loadingio-spinner-ball-h1u60i2wsu">
         <div class="ldio-ivekc1fyg2">
@@ -8,7 +8,6 @@
       </div>
     </loading>
     <navbar></navbar>
-
     <div class="container prod-detail">
       <div class="row align-items-start">
         <div class="col-md-6">
@@ -31,7 +30,6 @@
             </a>
           </div>
         </div>
-
         <div class="col-md-6">
           <h2 class="h2 prod-detail__title">{{ product.title }}</h2>
           <div class="prod-detail__price">
@@ -59,7 +57,6 @@
           </div>
         </div>
       </div>
-
       <div class="prod-detail__need mt-4">
         <h3 class="prod-detail__subtitle">購課須知</h3>
         <ul class="prod-detail__list">
@@ -69,7 +66,6 @@
           <li>疫情期間入館內皆須量體溫，我們也會頻繁實施館內消毒清潔。</li>
         </ul>
       </div>
-
       <div class="prod-detail__maybelike" v-if="relatedProducts.length !== 0">
         <h3 class="prod-detail__subtitle">您可能也會喜歡</h3>
         <div class="row">
@@ -96,19 +92,19 @@
         </div>
       </div>
     </div>
-    <pagebottom></pagebottom>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 
 import navbar from '@/components/Navbar.vue';
-import pagebottom from '@/components/Footer.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   components: {
     navbar,
-    pagebottom,
+    Footer,
   },
   data() {
     return {

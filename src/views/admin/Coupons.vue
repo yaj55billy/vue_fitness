@@ -38,7 +38,6 @@
       </tbody>
     </table>
     <pagination :pagedata="pagination" @update="getCoupons"></pagination>
-
     <div id="couponModal" class="modal fade"
      tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
@@ -114,7 +113,6 @@
         </div>
       </div>
     </div>
-
     <div id="delCouponModal" class="modal fade"
       tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
@@ -143,7 +141,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -173,7 +170,6 @@ export default {
       isLoading: false,
     };
   },
-  props: ['token'],
   created() {
     this.getCoupons();
   },
@@ -186,18 +182,7 @@ export default {
         this.pagination = res.data.meta.pagination;
         this.isLoading = false;
       });
-
       if (this.tempCoupons.id) {
-        this.tempCoupons = {
-          title: '',
-          code: '',
-          percent: 0,
-          enabled: false,
-          deadline_at: 0,
-        };
-        this.coupon_date = '';
-        this.coupon_time = '';
-      } else {
         this.tempCoupons = {
           title: '',
           code: '',

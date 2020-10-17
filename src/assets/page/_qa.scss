@@ -2,22 +2,10 @@
   text-align: left;
   &-item{
     &__h2{
-      line-height: 1;
-    }
-    &__btn{
-      border: none;
-      margin: 0;
-      padding: 0;
-      background-color: transparent;
-      text-align: left;
       font-size: 20px;
       font-weight: 700;
       color: $primary;
-      height: 100%;
-      &:focus{
-        border: none;
-        outline: none;
-      }
+      line-height: 1.4;
     }
     &__ans{
       font-size: 16px;

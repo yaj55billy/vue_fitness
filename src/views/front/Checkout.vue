@@ -55,7 +55,6 @@
               </div>
             </div>
           </div>
-
           <div class="cart-order">
             <h3 class="text-left">訂購人資料</h3>
             <ul class="cart-order__list" v-if="order.user">
@@ -88,19 +87,19 @@
         </div>
       </div>
     </section>
-    <pagebottom></pagebottom>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 
 import navbar from '@/components/Navbar.vue';
-import pagebottom from '@/components/Footer.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   components: {
     navbar,
-    pagebottom,
+    Footer,
   },
   data() {
     return {
@@ -124,7 +123,6 @@ export default {
     payOrder() {
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders/${this.orderId}/paying`;
-
       this.axios.post(url).then((res) => {
         if (res.data.data.paid) {
           this.$bus.$emit('notice-user', '付款成功');

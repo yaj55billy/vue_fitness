@@ -40,18 +40,18 @@
         </div>
       </div>
     </section>
-    <pagebottom></pagebottom>
+    <Footer></Footer>
   </div>
 </template>
 <script>
 
 import navbar from '@/components/Navbar.vue';
-import pagebottom from '@/components/Footer.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   components: {
     navbar,
-    pagebottom,
+    Footer,
   },
   data() {
     return {

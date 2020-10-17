@@ -22,9 +22,7 @@
         </tr>
       </tbody>
     </table>
-
     <pagination :pagedata="pagination" @update="getData"></pagination>
-
     <div id="delStorageModal" class="modal fade"
       tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
@@ -75,7 +73,6 @@ export default {
       isLoading: false,
     };
   },
-  props: ['token'],
   created() {
     this.getData();
   },

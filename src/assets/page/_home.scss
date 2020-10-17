@@ -40,7 +40,13 @@
   &-intro{
     &__section{
       &:last-child{
-        margin-top: 35px;
+        margin-top: 75px;
+        @media screen and (max-width: 1199px) {
+          margin-top: 55px;
+        }
+        @media screen and (max-width: 991px) {
+          margin-top: 10px;
+        }
         @media screen and (max-width: 767px) {
           margin-top: 0;
         }

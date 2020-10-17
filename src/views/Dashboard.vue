@@ -67,14 +67,14 @@ export default {
   },
   methods: {
     checkLogin() {
-      // 確認是否是有 token (登入)，沒有 token 則回 login 頁面
+      // 確認是否是有 token (登入)
       this.token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, '$1');
-      this.axios.defaults.headers.common.Authorization = `Bearer ${this.token}`;
       const api = `${process.env.VUE_APP_APIPATH}/auth/check`;
       this.axios.post(api, {
         api_token: this.token,
       }).then(() => {
         this.checkSuccess = true;
+        this.axios.defaults.headers.common.Authorization = `Bearer ${this.token}`;
       }).catch(() => {
         this.$router.push('/login');
       });
@@ -103,7 +103,6 @@ export default {
     }
   }
 }
-
 .router-link-active{
   color: lighten(#274555,25%);
   &:hover{

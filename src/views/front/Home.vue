@@ -23,7 +23,6 @@
         </div>
       </div>
     </div>
-
     <div class="home-intro mt-6 mb-6">
       <div class="container">
         <div class="home-intro__section">
@@ -63,7 +62,6 @@
         </div>
       </div>
     </div>
-
     <div class="bg-primary home-location pt-4 pb-4">
       <div class="container">
         <h2 class="home-title">
@@ -85,7 +83,6 @@
         </div>
       </div>
     </div>
-
     <div class="home-topic mt-6 mb-6">
       <div class="container">
         <h2 class="home-title">
@@ -168,19 +165,18 @@
         </div>
       </div>
     </div>
-    <pagebottom></pagebottom>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import navbar from '@/components/Navbar.vue';
-import pagebottom from '@/components/Footer.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
-  name: 'Home',
   components: {
     navbar,
-    pagebottom,
+    Footer,
   },
   data() {
     return {

@@ -60,7 +60,6 @@ export default {
       paidLoading: false,
     };
   },
-  props: ['token'],
   created() {
     this.getOrders();
   },

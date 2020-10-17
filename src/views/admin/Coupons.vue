@@ -227,41 +227,31 @@ export default {
       }
     },
     updateCoupon() {
+      this.isLoading = true;
+      this.tempCoupons.deadline_at = `${this.coupon_date} ${this.coupon_time}`;
+      let url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupon`;
+      let httpMethod = 'post';
+      let successText = '優惠券新增成功';
+      let failText = '優惠券新增失敗，請再檢查看看';
+
       if (this.tempCoupons.id) {
-        // 編輯
-        this.isLoading = true;
-        this.tempCoupons.deadline_at = `${this.coupon_date} ${this.coupon_time}`;
-        const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}
-        /admin/ec/coupon/${this.tempCoupons.id}`;
-        this.axios.patch(url, this.tempCoupons)
-          .then(() => {
-            $('#couponModal').modal('hide');
-            this.$bus.$emit('notice-user', '優惠券編輯成功');
-            this.isLoading = false;
-            this.getCoupons();
-          }).catch((error) => {
-            this.isLoading = false;
-            const errorText = error.response.data.message;
-            $('#couponModal').modal('hide');
-            this.$bus.$emit('notice-user', `優惠券編輯失敗,+${errorText}`);
-          });
-      } else {
-        // 新增 Coupon
-        this.tempCoupons.deadline_at = `${this.coupon_date} ${this.coupon_time}`;
-        this.isLoading = true;
-        const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupon`;
-        this.axios.post(url, this.tempCoupons)
-          .then(() => {
-            $('#couponModal').modal('hide');
-            this.$bus.$emit('notice-user', '優惠券新增成功');
-            this.isLoading = false;
-            this.getCoupons();
-          }).catch(() => {
-            this.isLoading = false;
-            $('#couponModal').modal('hide');
-            this.$bus.$emit('notice-user', '優惠券新增失敗，請再檢查看看');
-          });
+        url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupon/${this.tempCoupons.id}`;
+        httpMethod = 'patch';
+        successText = '優惠券編輯成功';
+        failText = '優惠券編輯失敗，請再檢查看看';
       }
+
+      this.axios[httpMethod](url, this.tempCoupons)
+        .then(() => {
+          $('#couponModal').modal('hide');
+          this.$bus.$emit('notice-user', successText);
+          this.isLoading = false;
+          this.getCoupons();
+        }).catch(() => {
+          this.isLoading = false;
+          $('#couponModal').modal('hide');
+          this.$bus.$emit('notice-user', failText);
+        });
     },
     deleteCoupon() {
       // 刪除

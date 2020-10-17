@@ -58,9 +58,9 @@
           <div class="modal-body text-left">
             <div class="row">
               <div class="col-sm-4">
-                <div v-for="i in 3" :key="i + 'img'" class="form-group">
-                  <label :for="'imageUrl_' + i">輸入圖片網址</label>
-                  <input :id="'imageUrl_' + i" v-model="tempProduct.imageUrl[i]"
+                <div v-for="item in 3" :key="item + 'img'" class="form-group">
+                  <label :for="'imageUrl_' + (item-1)">輸入圖片網址</label>
+                  <input :id="'imageUrl_' + (item-1)" v-model="tempProduct.imageUrl[item-1]"
                   type="text" class="form-control"
                     placeholder="請輸入圖片連結">
                 </div>
@@ -74,15 +74,11 @@
                   <input type="file" class="form-control h-auto"
                   id="customFile" @change="uploadFile">
                 </div>
-                <img class="img-fluid"
-                :src="tempProduct.imageUrl[0]"
+                <div v-for="item in 3" :key="item + 'img-show'">
+                  <img class="img-fluid"
+                :src="tempProduct.imageUrl[item-1]"
                 :alt="'課程示意: '+tempProduct.title">
-                <img class="img-fluid"
-                :src="tempProduct.imageUrl[1]"
-                :alt="'課程示意: '+tempProduct.title">
-                <img class="img-fluid"
-                :src="tempProduct.imageUrl[2]"
-                :alt="'課程示意: '+tempProduct.title">
+                </div>
               </div>
               <div class="col-sm-8">
                 <div class="form-group">
@@ -252,38 +248,29 @@ export default {
       }
     },
     updateData() {
+      this.isLoading = true;
+      let url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product`;
+      let httpMethod = 'post';
+      let successText = '產品新增成功';
+      let failText = '產品新增失敗，請再檢查看看';
+
       if (this.tempProduct.id) {
-        // 編輯
-        this.isLoading = true;
-        const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product/${this.tempProduct.id}`;
-        this.axios.patch(url, this.tempProduct)
-          .then(() => {
-            $('#productModal').modal('hide');
-            this.$bus.$emit('notice-user', '產品編輯成功');
-            this.isLoading = false;
-            this.getProducts();
-          }).catch((error) => {
-            this.isLoading = false;
-            const errorText = error.response.data.message;
-            $('#productModal').modal('hide');
-            this.$bus.$emit('notice-user', `產品編輯失敗,+${errorText}`);
-          });
-      } else {
-        // 新增
-        this.isLoading = true;
-        const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product`;
-        this.axios.post(url, this.tempProduct)
-          .then(() => {
-            $('#productModal').modal('hide');
-            this.$bus.$emit('notice-user', '產品新增成功');
-            this.isLoading = false;
-            this.getProducts();
-          }).catch(() => {
-            this.isLoading = false;
-            $('#productModal').modal('hide');
-            this.$bus.$emit('notice-user', '產品新增失敗，請再檢查看看');
-          });
+        url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product/${this.tempProduct.id}`;
+        httpMethod = 'patch';
+        successText = '產品編輯成功';
+        failText = '產品編輯失敗，請再檢查看看';
       }
+      this.axios[httpMethod](url, this.tempProduct)
+        .then(() => {
+          $('#productModal').modal('hide');
+          this.$bus.$emit('notice-user', successText);
+          this.isLoading = false;
+          this.getProducts();
+        }).catch(() => {
+          this.isLoading = false;
+          $('#productModal').modal('hide');
+          this.$bus.$emit('notice-user', failText);
+        });
     },
     deleteProduct() {
       // 刪除

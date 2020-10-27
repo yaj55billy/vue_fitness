@@ -3,10 +3,7 @@
 .prod{
   margin: 60px auto;
   transition: all 0.5s;
-
-
-
-  &-filter{ // 上方分類
+  &-filter{
     font-size: 0;
     margin-top: 15px;
     margin-bottom: 0;
@@ -21,7 +18,6 @@
       margin-top: 8px;
     }
   }
-
   &-card{
     position: relative;
     &:hover{
@@ -31,13 +27,11 @@
       }
     }
   }
-
-  &-pic{ // 圖片
+  &-pic{
     position: relative;
     overflow: hidden;
   }
-
-  &-cart{ //  購物車依循圖片
+  &-cart{
     position: absolute;
     bottom: -60px;
     right: 15px;
@@ -69,24 +63,21 @@
       }
     }
   }
-
-  &-link{ // 連到 detail
+  &-link{
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
   }
-
-  &-price{ // 價格
+  &-price{
     &__special{
       font-size: 26px;
       font-weight: 500;
       color: $primary;
     }
   }
-
-  &-detail{ // detail 樣式
+  &-detail{
     margin: 120px auto 60px;
     &__title{
       text-align: left;
@@ -117,17 +108,14 @@
       text-align: left;
       margin: 8px 0 0;
     }
-
     &__label{
       width: 100%;
       text-align: left;
       margin-bottom: 0;
     }
-
     .btn{
       margin-left: 10px;
     }
-
     &__subtitle{
       font-weight: 700;
       text-align: left;
@@ -147,7 +135,5 @@
       padding-top: 25px;
     }
   }
-
 }
-
 // 前台產品 END ---

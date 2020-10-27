@@ -1,7 +1,3 @@
-
-
-
-// 購物車流程
 .shop-step{
   list-style: none;
   padding: 0;
@@ -25,7 +21,6 @@
         display: none;
       }
     }
-
     &.complete{
       .shop-step__num{
         background-color: $primary;
@@ -47,10 +42,6 @@
     z-index: 5;
   }
 }
-
-// 購物車流程 END ---
-
-// 購物車資訊
 
 .cart{
   &-page{
@@ -129,7 +120,6 @@
           height: 25px;
           line-height: 20px;
         }
-
         &:disabled{
           opacity: 0.65;
         }
@@ -163,12 +153,10 @@
         }
       }
     }
-
     &__num{ //結帳
       width: 10%;
     }
   }
-
   &-footer{
     &__coupon{
       .input-group{
@@ -191,7 +179,6 @@
       }
     }
   }
-
   &-empty{
     border: solid 1px;
     padding: 120px 40px;
@@ -201,7 +188,6 @@
     }
   }
 }
-// 購物車資訊 END ----
 
 .cart-title{
   display: flex;
@@ -214,16 +200,13 @@
     margin-bottom: 0;
   }
 }
-
 .cart-complete{
   margin-top: 20px;
   padding: 150px 40px;
   border: solid 2px;
 }
-
 .cart-order{
   margin-top: 25px;
-
   &__list{
     list-style: none;
     padding: 0;
@@ -248,7 +231,3 @@
     width: calc(100% - 85px);
   }
 }
-
-// .form{
-//   padding: 0 12px;
-// }

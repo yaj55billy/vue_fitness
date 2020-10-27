@@ -7,7 +7,7 @@
         </div>
       </div>
     </loading>
-    <navbar></navbar>
+    <Navbar></Navbar>
     <div class="container prod-detail">
       <div class="row align-items-start">
         <div class="col-md-6">
@@ -15,7 +15,7 @@
             <div class="carousel-inner">
               <div class="carousel-item" v-for="(item, index) in product.imageUrl"
               :key="item.id" :class="{active: index == 0}">
-                <img :src="item" class="d-block w-100" alt="">
+                <img :src="item" class="d-block w-100" :alt="product.title">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls"
@@ -98,12 +98,12 @@
 
 <script>
 
-import navbar from '@/components/Navbar.vue';
+import Navbar from '@/components/Navbar.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
   components: {
-    navbar,
+    Navbar,
     Footer,
   },
   data() {

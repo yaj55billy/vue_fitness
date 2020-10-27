@@ -7,7 +7,7 @@
         </div>
       </div>
     </loading>
-    <navbar></navbar>
+    <Navbar></Navbar>
     <section class="section">
       <div class="cart-page">
         <div class="container">
@@ -93,12 +93,12 @@
 
 <script>
 
-import navbar from '@/components/Navbar.vue';
+import Navbar from '@/components/Navbar.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
   components: {
-    navbar,
+    Navbar,
     Footer,
   },
   data() {

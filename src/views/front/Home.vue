@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <navbar></navbar>
+    <Navbar></Navbar>
     <div class="position-relative banner">
       <div class="position-absolute banner-indexbg"></div>
       <i class="fas fa-angle-down banner-arrow wow animate__fadeInDown ani-infi"
@@ -31,7 +31,7 @@
           </h2>
           <div class="row">
             <div class="col-md-6">
-              <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/3ytBunIRdoAz3fj5pQHjXRks7kuYvdN9xEWs8djvoNuZ4aWCu4LaDhWvXgFtQtcVLuG06lUFY8GN8D0x2RbGbFXuhSlsHw2v1PC5xh7dfruIUpKwtg2n43Y3VvHY9UVK.jpg" alt="" class="img-fluid">
+              <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/3ytBunIRdoAz3fj5pQHjXRks7kuYvdN9xEWs8djvoNuZ4aWCu4LaDhWvXgFtQtcVLuG06lUFY8GN8D0x2RbGbFXuhSlsHw2v1PC5xh7dfruIUpKwtg2n43Y3VvHY9UVK.jpg" alt="課程介紹" class="img-fluid">
             </div>
             <div class="col-md-6 m-auto home-intro__con">
               <p class="home-intro__text">
@@ -48,7 +48,7 @@
           </h2>
           <div class="row flex-row-reverse justify-content-between mt-4">
             <div class="col-md-6">
-              <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/eu6kMajvBAf3W9oF2JrRRkscOspho9jTJE6CAxI7WMyqr8qHsjuNPWclztO7VECD92grH2oL6HlP2ahFJibsT3JBWMw43mXHMlkE3S5bbbOy8Flk5hM5yxIXkll5Iury.jpg" alt="" class="img-fluid">
+              <img src="https://hexschool-api.s3.us-west-2.amazonaws.com/custom/eu6kMajvBAf3W9oF2JrRRkscOspho9jTJE6CAxI7WMyqr8qHsjuNPWclztO7VECD92grH2oL6HlP2ahFJibsT3JBWMw43mXHMlkE3S5bbbOy8Flk5hM5yxIXkll5Iury.jpg" alt="場館優質環境" class="img-fluid">
             </div>
             <div class="col-md-6 m-auto home-intro__con">
               <p class="home-intro__text">
@@ -170,12 +170,12 @@
 </template>
 
 <script>
-import navbar from '@/components/Navbar.vue';
+import Navbar from '@/components/Navbar.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
   components: {
-    navbar,
+    Navbar,
     Footer,
   },
   data() {

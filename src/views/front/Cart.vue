@@ -7,7 +7,7 @@
         </div>
       </div>
     </loading>
-    <navbar></navbar>
+    <Navbar></Navbar>
     <section class="section">
       <div class="cart-page">
         <div class="container">
@@ -193,12 +193,12 @@
 
 <script>
 
-import navbar from '@/components/Navbar.vue';
+import Navbar from '@/components/Navbar.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
   components: {
-    navbar,
+    Navbar,
     Footer,
   },
   data() {
@@ -259,7 +259,7 @@ export default {
         });
     },
     updateTotal() {
-      this.cartPrice = 0; // 歸零，不然計算會有累加狀況。
+      this.cartPrice = 0; // 歸零。
       this.carts.forEach((item) => {
         this.cartPrice += item.product.price * item.quantity;
       });
@@ -268,7 +268,7 @@ export default {
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping/${id}`;
       this.axios.delete(url).then(() => {
-        this.getCart(); // 要重新運算
+        this.getCart();
         this.isLoading = false;
       }).catch(() => {
         this.isLoading = false;

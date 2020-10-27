@@ -1,6 +1,6 @@
 <template>
   <div>
-    <navbar></navbar>
+    <Navbar></Navbar>
     <div class="position-relative banner">
       <div class="position-absolute banner-prodbg"></div>
       <div class="container d-flex flex-column banner-body banner-body-prod">
@@ -44,12 +44,12 @@
 </template>
 
 <script>
-import navbar from '@/components/Navbar.vue';
+import Navbar from '@/components/Navbar.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
   components: {
-    navbar,
+    Navbar,
     Footer,
   },
   data() {

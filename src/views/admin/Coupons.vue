@@ -254,7 +254,6 @@ export default {
         });
     },
     deleteCoupon() {
-      // 刪除
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/coupon/${this.tempCoupons.id}`;
       this.axios.delete(url).then(() => {

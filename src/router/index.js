@@ -3,10 +3,9 @@ import VueRouter from 'vue-router';
 import Index from '../views/Index.vue';
 
 Vue.use(VueRouter);
-
 const routes = [
   {
-    path: '/', // 路徑
+    path: '/',
     component: Index,
     children: [
       {
@@ -93,9 +92,7 @@ const routes = [
     redirect: '/',
   },
 ];
-
 const router = new VueRouter({
   routes,
 });
-
 export default router;

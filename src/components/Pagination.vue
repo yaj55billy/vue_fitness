@@ -21,7 +21,6 @@
             @click.prevent="nowPage(item)">{{ item }}
           </a>
         </li>
-
         <li class="page-item"
           :disabled="pagedata.current_page === pagedata.total_pages"
           :class="{disabled: pagedata.current_page === pagedata.total_pages}">
@@ -42,13 +41,11 @@
 export default {
   data() {
     return {
-
     };
   },
   props: ['pagedata'],
   methods: {
     nowPage(num) {
-      // 把目前頁碼 $emit 到外層 getProduct
       this.$emit('update', num);
     },
   },

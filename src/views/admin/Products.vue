@@ -40,7 +40,6 @@
       </tbody>
     </table>
     <pagination :pagedata="pagination" @update="getProducts"></pagination>
-
     <div id="productModal" class="modal fade"
      tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
@@ -212,7 +211,6 @@ export default {
         this.pagination = res.data.meta.pagination;
         this.isLoading = false;
       });
-
       if (this.tempProduct.id) {
         this.tempProduct = {
           imageUrl: [],
@@ -253,7 +251,6 @@ export default {
       let httpMethod = 'post';
       let successText = '產品新增成功';
       let failText = '產品新增失敗，請再檢查看看';
-
       if (this.tempProduct.id) {
         url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product/${this.tempProduct.id}`;
         httpMethod = 'patch';
@@ -273,7 +270,6 @@ export default {
         });
     },
     deleteProduct() {
-      // 刪除
       this.isLoading = true;
       const url = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/ec/product/${this.tempProduct.id}`;
       this.axios.delete(url).then(() => {

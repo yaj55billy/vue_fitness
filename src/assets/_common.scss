@@ -1,26 +1,21 @@
 /* ------------------- 共用 -------------------- */
-
 .app{
   overflow: hidden;
 }
-
 .logo{
   font-family: 'Ubuntu', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 1px;
 }
-
 .shopname{
   font-family: 'Ubuntu', sans-serif;
   font-size: 1.2rem;
   margin-right: 4px;
 }
-
 .font-ubuntu{
   font-family: 'Ubuntu', sans-serif;
 }
-
 .section{
   padding: 120px 0 60px;
 }
@@ -48,14 +43,12 @@
     background-size: cover;
     opacity: 0.6;
   }
-
   &-body{
     min-height: 100vh;
     &-prod{
       min-height: 450px;
     }
   }
-
   &-textarea{
     background-color: rgba(0,0,0,0.4);
     padding: 40px;
@@ -66,7 +59,6 @@
       color: #fff;
     }
   }
-
   &-arrow{
     position: absolute;
     bottom: 30px;
@@ -88,7 +80,6 @@
     font-size: 18px;
     letter-spacing: 2px;
   }
-
   &-md{
     padding: 8px 40px;
     font-size: 16px;
@@ -96,11 +87,9 @@
       padding: 6px 30px;
     }
   }
-
   &-sm{
     padding: 6px 14px;
   }
-
   &-area{
     width: 100%;
     &.right{
@@ -116,7 +105,7 @@
 }
 // 按鈕部分 END
 
-// loading 
+// loading
 @keyframes ldio-ivekc1fyg2 {
   0%, 100% {
     animation-timing-function: cubic-bezier(0.45,0,0.9,0.55)
@@ -155,20 +144,17 @@
   position: relative;
   transform: translateZ(0) scale(1);
   backface-visibility: hidden;
-  transform-origin: 0 0; /* see note above */
+  transform-origin: 0 0;
 }
 .ldio-ivekc1fyg2 div { box-sizing: content-box; }
-
 // loading END
 
 .ani-infi{
   animation-iteration-count: infinite;
 }
-
 .ani-infi3{
   animation-iteration-count: 3;
 }
-
 .nav-item{
   margin-right: 1.5rem;
   &:last-child{
@@ -181,16 +167,14 @@
     border-radius: 10px;
     transform: translateY(-8px) translateX(-6px);
     padding: 0.20em 0.4em;
-  }    
+  }
 }
-
 .sidebar{
   min-height: 100vh;
   @media screen and (max-width: 767px){
     min-height: auto;
   }
 }
-
 
 // 前台 table
 .table {
